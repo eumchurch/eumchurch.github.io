@@ -10,18 +10,19 @@ header-img: "img/post-bg-01.jpg"
 
     <h1 class="header author-header">{{ site.author_name }}</h1>
     <h2 class="header" itemprop="headline">모든 게시글</h2>
+<!--
     <h2 class="header categories" itemprop="headline"><small>grouped by
 
       <div class="dropdown btn-group">
         <button class="btn btn-categories dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Categories
           <span class="caret"></span>
         </button>
-<!--         <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
           <li><a href="{{ site.baseurl }}/blog/">Years</a></li>
-        </ul> -->
+        </ul>
       </div>
 
-    </small></h2>     
+    </small></h2>  -->   
       
       {% for category in site.categories %}
       <div class="col-md-12 content-panel articles">
