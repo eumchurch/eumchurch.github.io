@@ -93,6 +93,9 @@ $theme-dark: #222;
     padding-bottom: 56.26%; 
     align-items: center;
   }
+  .category-box {
+    diaplay: inline-block;
+  }
 }
 @media screen and (max-width: 767px) {
   .main-message {
@@ -116,5 +119,8 @@ $theme-dark: #222;
     overflow: hidden; 
     padding-bottom: 56.26%; 
     align-items: center;
+  }
+  .category-box {
+    display: inline;
   }
 }
