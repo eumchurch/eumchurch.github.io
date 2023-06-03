@@ -45,3 +45,76 @@ $theme-dark: #222;
         "mixins",
         "base"
 ;
+
+
+
+.full {
+  width: 100%;
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.middle {
+  display: flex;
+  align-items: center;
+}
+
+.main-blue {
+  background-color: #303a4b;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .main-message {
+    font-size: 48px;
+    line-height: 60px;
+    text-align: left;
+  }
+  .main-logo-image {
+  }
+  .navbar-flex {
+    height: 70px;
+  }
+  .nav-logo {
+    margin-top: 5px;
+    width: 150px;
+    height: 60px;
+  }
+  .youtube {
+    position: relative; 
+    overflow: hidden; 
+    padding-bottom: 56.26%; 
+    align-items: center;
+  }
+}
+@media screen and (max-width: 767px) {
+  .main-message {
+    font-size: 30px;
+    line-height: 45px;
+    text-align: left;
+  }
+  .main-logo-image {
+    display: none;
+  }
+  .navbar-flex {
+    height: 50px;
+  }
+  .nav-logo {
+    margin-top: 5px;
+    width: 100px;
+    height: 40px;
+  }
+  .youtube {
+    position: relative; 
+    overflow: hidden; 
+    padding-bottom: 56.26%; 
+    align-items: center;
+  }
+}
