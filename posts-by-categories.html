@@ -28,8 +28,8 @@ header-img: "img/post-bg-01.jpg"
       <!-- <div class="col-md-12 content-panel articles"> -->
         <!-- <hr> -->
         <div class="col-md-3 category-box">
-          <img src="{{ site.baseurl }}/img/{{ category | first }}.png" style="background-color: #303a4b; width: 100%;">
-          <h2 id="{{ category | first }}-ref">{{ category | first }}</h2>
+          <img class="hidden-xs" src="{{ site.baseurl }}/img/{{ category | first }}.png" style="background-color: #303a4b; width: 100%;">
+          <h2 id="{{ category | first }}-ref" class="margin-mobile">{{ category | first }}</h2>
           <ul style="list-style: none;">
             {% for posts in category %}
               {% for post in posts %}
