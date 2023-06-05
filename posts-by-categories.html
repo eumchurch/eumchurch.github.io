@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: category
 title: "이음 episode"
 description: "하나님 나라와 세상을 잇는 교회"
 header-img: "img/post-bg-01.jpg"
@@ -25,22 +25,25 @@ header-img: "img/post-bg-01.jpg"
     </small></h2>  -->   
       
       {% for category in site.categories %}
-      <div class="col-md-12 content-panel articles">
-        <h2 id="{{ category | first }}-ref">{{ category | first }}</h2>
-        <ul style="list-style: none;">
-          {% for posts in category %}
-            {% for post in posts %}
-              <li>
-                <hr>
-                <!-- problem of for cycle can't use images <img src="/{{ post.header-img | prepend: site.baseurl }}" class="img-responsive" alt="{{ post.title }}"> -->
-                <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-                <small class="hidden-xs">{{ post.date | date: "%B %-d, %Y" }}</small>
-              </li>
+      <!-- <div class="col-md-12 content-panel articles"> -->
+        <!-- <hr> -->
+        <div class="col-md-3 category-box">
+          <img class="hidden-xs" src="{{ site.baseurl }}/img/{{ category | first }}.png" style="background-color: #303a4b; width: 100%;">
+          <h2 id="{{ category | first }}-ref" class="margin-mobile">{{ category | first }}</h2>
+          <ul style="list-style: none;">
+            {% for posts in category %}
+              {% for post in posts %}
+                <li>
+                  <!-- problem of for cycle can't use images <img src="/{{ post.header-img | prepend: site.baseurl }}" class="img-responsive" alt="{{ post.title }}"> -->
+                  <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+                  <small>{{ post.date | date: "%Y %B %-d" }}</small>
+                </li>
+              {% endfor %}
             {% endfor %}
-          {% endfor %}
 
-        </ul>
-      </div>
+          </ul>
+        </div>
+      <!-- </div> -->
       {% endfor %}
   </div>
 </div>

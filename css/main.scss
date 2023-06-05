@@ -35,7 +35,7 @@
 
 // variables.less link and gradient background
 $head-primary: #7b4397 ;
-$head-secondary: #dc2430 ;
+$head-secondary: #02AC54 ;
 $theme-primary: #fdcc52 ;
 $theme-secondary: #fdc539 ;
 $theme-dark: #222;
@@ -46,7 +46,9 @@ $theme-dark: #222;
         "base"
 ;
 
-
+a {
+  text-color: bs-example-navbar-collapse-1
+}
 
 .full {
   width: 100%;
@@ -93,6 +95,11 @@ $theme-dark: #222;
     padding-bottom: 56.26%; 
     align-items: center;
   }
+  .category-box {
+    diaplay: inline-block;
+  }
+  .nav-flex-background {
+  }
 }
 @media screen and (max-width: 767px) {
   .main-message {
@@ -116,5 +123,16 @@ $theme-dark: #222;
     overflow: hidden; 
     padding-bottom: 56.26%; 
     align-items: center;
+  }
+  .category-box {
+    display: inline;
+  }
+  .nav-flex-background {
+    background-color: white;
+    width: 100%;
+  }
+  .margin-mobile {
+    margin-left: 5%;
+    margin-right: 5%;
   }
 }
