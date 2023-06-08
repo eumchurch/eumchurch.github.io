@@ -1,9 +1,9 @@
----
+<!-- ---
 layout: category
 title: "이음 episode"
 description: "하나님 나라와 세상을 잇는 교회"
 header-img: "img/post-bg-01.jpg"
----
+--- -->
 
 <div class="container-fluid index">
   <div class="row index all-posts">
@@ -29,7 +29,7 @@ header-img: "img/post-bg-01.jpg"
         <!-- <hr> -->
         <div class="col-md-3 category-box">
           <img class="hidden-xs" src="{{ site.baseurl }}/img/{{ category | first }}.png" style="background-color: #303a4b; width: 100%;">
-          <h2 id="{{ category | first }}-ref" class="margin-mobile">{{ category | first }}</h2>
+          <h3 id="{{ category | first }}-ref" class="margin-mobile">{{ category | first }}</h3>
           <ul style="list-style: none;">
             {% for posts in category %}
               {% for post in posts %}

@@ -34,11 +34,14 @@
 // }
 
 // variables.less link and gradient background
-$head-primary: #7b4397 ;
-$head-secondary: #02AC54 ;
-$theme-primary: #fdcc52 ;
-$theme-secondary: #fdc539 ;
-$theme-dark: #222;
+$theme-navy: #303a4b;
+$theme-green: #02AC54;
+$theme-blue: #2a9bd8;
+
+$head-primary: $theme-navy ;
+$head-secondary: $theme-navy ;
+$theme-primary: $theme-navy ;
+$theme-secondary: $theme-navy ;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
@@ -68,8 +71,46 @@ a {
   align-items: center;
 }
 
-.main-blue {
-  background-color: #303a4b;
+.bg-navy {
+  background-color: $theme-navy;
+  color: white;
+}
+
+.bg-blue {
+  background-color: $theme-blue;
+  color: white;
+}
+
+.bg-green {
+  background-color: $theme-green;
+  color: white;
+}
+
+.bg-navy-to-blue {
+  background: $theme-navy;
+  background: -webkit-linear-gradient($theme-navy, $theme-blue);
+  background: linear-gradient($theme-navy, $theme-blue);
+  color: white;
+}
+
+.bg-navy-to-white {
+  background: $head-primary;
+  background: -webkit-linear-gradient($theme-navy, white);
+  background: linear-gradient($theme-navy, white);
+  color: white;
+}
+
+.bg-blue-to-green {
+  background: $theme-blue;
+  background: -webkit-linear-gradient($theme-blue, $theme-green);
+  background: linear-gradient($theme-blue, $theme-green);
+  color: white;
+}
+
+.bg-green-to-blue {
+  background: $theme-green;
+  background: -webkit-linear-gradient($theme-green, $theme-blue);
+  background: linear-gradient($theme-green, $theme-blue);
   color: white;
 }
 
