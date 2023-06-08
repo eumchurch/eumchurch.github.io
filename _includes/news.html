@@ -1,0 +1,34 @@
+<section id="news" class="download bg-green text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-2">
+                <div class="container-fluid index">
+                    <div class="row index all-posts">
+
+                      {% for category in site.categories %}
+                        <!-- {% if category[0] == "bulletin" or category[0] == "ministry" %} -->
+                          <div class="col-md-6 category-box">
+                            <img class="hidden-xs" src="{{ site.baseurl }}/img/{{ category | first }}.png" style="background-color: #303a4b; width: 100%;">
+                            <h3 id="{{ category | first }}-ref" class="margin-mobile">{{ category | first }}</h3>
+                            <ul style="list-style: none;">
+                              {% for posts in category %}
+                                {% for post in posts %}
+                                  <li>
+                                    <!-- problem of for cycle can't use images <img src="/{{ post.header-img | prepend: site.baseurl }}" class="img-responsive" alt="{{ post.title }}"> -->
+                                    <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+                                    <small>{{ post.date | date: "%Y %B %-d" }}</small>
+                                  </li>
+                                {% endfor %}
+                              {% endfor %}
+
+                            </ul>
+                          </div>
+                        <!-- </div> -->
+                        <!-- {% endif %} -->
+                      {% endfor %}
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
