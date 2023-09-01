@@ -35,8 +35,10 @@
 
 // variables.less link and gradient background
 $theme-navy: #303a4b;
-$theme-green: #02AC54;
-$theme-blue: #2a9bd8;
+$theme-green: #029565;
+$theme-blue: #00a2db;
+$theme-gray: #f1f1f1;
+$theme-black: #3f3f3f;
 
 $head-primary: $theme-navy ;
 $head-secondary: $theme-navy ;
@@ -51,6 +53,14 @@ $theme-secondary: $theme-navy ;
 
 a {
   text-color: bs-example-navbar-collapse-1
+}
+
+body {
+  line-height: 1.8;
+  color: $theme-black;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'SCoreDream';
 }
 
 .full {
@@ -71,47 +81,59 @@ a {
   align-items: center;
 }
 
-.bg-navy {
-  background-color: $theme-navy;
-  color: white;
+.remains {
+  flex: 1;
 }
 
-.bg-blue {
-  background-color: $theme-blue;
-  color: white;
+.bg-white {
+  background-color: white;
 }
 
-.bg-green {
-  background-color: $theme-green;
-  color: white;
+.bg-gray {
+  background-color: $theme-gray;
 }
 
-.bg-navy-to-blue {
-  background: $theme-navy;
-  background: -webkit-linear-gradient($theme-navy, $theme-blue);
-  background: linear-gradient($theme-navy, $theme-blue);
-  color: white;
+.bg-black {
+  background-color: $theme-black;
 }
 
-.bg-navy-to-white {
-  background: $head-primary;
-  background: -webkit-linear-gradient($theme-navy, white);
-  background: linear-gradient($theme-navy, white);
-  color: white;
+.super-text {
+  color: $theme-black;
+  font-size: 70px;
+  font-family: 'SCoreDream';
 }
 
-.bg-blue-to-green {
-  background: $theme-blue;
-  background: -webkit-linear-gradient($theme-blue, $theme-green);
-  background: linear-gradient($theme-blue, $theme-green);
-  color: white;
+.super-text-thin {
+  font-weight: 100;
 }
 
-.bg-green-to-blue {
-  background: $theme-green;
-  background: -webkit-linear-gradient($theme-green, $theme-blue);
-  background: linear-gradient($theme-green, $theme-blue);
-  color: white;
+.super-text-blue {
+  color: $theme-blue;
+  font-weight: 900;
+}
+
+.super-text-green {
+  font-weight: 900;
+  color: $theme-green;
+}
+
+.narrow-text {
+  line-height: 1.25;
+}
+
+.circle {
+  width: 300px;
+  height: 120px;
+  background: radial-gradient( ellipse, #dbdbdb, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) );
+}
+
+.rounded-button {
+  padding: 2px 15px 2px 15px;
+  font-size: 14px;
+  width: 220px;
+  height: 30px;
+  border: 2px solid $theme-black; /* 테두리 스타일과 두께 지정 */
+  border-radius: 15px;
 }
 
 @media (min-width: 768px) {
@@ -121,13 +143,17 @@ a {
     text-align: left;
   }
   .main-logo-image {
+    width: 300px;
+  }
+  .name-logo-image {
+    width: 160px;
   }
   .navbar-flex {
-    height: 70px;
+    height: 105px;
   }
   .nav-logo {
-    margin-top: 5px;
-    width: 150px;
+    margin-top: 15px;
+    width: 300px;
     height: 60px;
   }
   .youtube {
@@ -149,7 +175,10 @@ a {
     text-align: left;
   }
   .main-logo-image {
-    display: none;
+    width: 90%;
+  }
+  .name-logo-image {
+    width: 160px;
   }
   .navbar-flex {
     height: 50px;
