@@ -35,8 +35,10 @@
 
 // variables.less link and gradient background
 $theme-navy: #303a4b;
-$theme-green: #82c78e;
-$theme-blue: #abd3dd;
+$theme-green: #029565;
+$theme-blue: #00a2db;
+$theme-light-green: #82c78e;
+$theme-light-blue: #abd3dd;
 $theme-gray: #f1f1f1;
 $theme-black: #3f3f3f;
 $theme-dark-gray: #565656;
@@ -98,12 +100,12 @@ body {
   background-color: $theme-black;
 }
 
-.bg-green {
-  background-color: $theme-green;
+.bg-light-green {
+  background-color: $theme-light-green;
 }
 
-.bg-blue {
-  background-color: $theme-blue;
+.bg-light-blue {
+  background-color: $theme-light-blue;
 }
 
 .super-text {
