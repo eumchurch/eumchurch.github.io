@@ -4,12 +4,12 @@
             말씀과 묵상
         </div>
         <div class="row">
-            <div class="col-sm-6" style="background-color: orange;">
+            <div class="col-sm-6">
                 <div class="col-sm-10 col-md-offset-1">
-                    <div class="full-width youtube" style="background-color: yellow;">
+                    <div class="full-width youtube">
                         <iframe class="full" src="https://www.youtube.com/embed/twLjvxC-yJY?si=4OAtR4Owrofokwon" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-                        <div style="background-color: orange;">
+                        <div>
                             {% for category in site.categories %}
                                 {% if category contains "sermon" %}
                                     {% for posts in category %}
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6" style="background-color: yellow;">
+            <div class="col-sm-6">
                 오독오독
             </div>
 
