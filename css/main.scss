@@ -37,8 +37,11 @@
 $theme-navy: #303a4b;
 $theme-green: #029565;
 $theme-blue: #00a2db;
+$theme-light-green: #82c78e;
+$theme-light-blue: #abd3dd;
 $theme-gray: #f1f1f1;
 $theme-black: #3f3f3f;
+$theme-dark-gray: #565656;
 
 $head-primary: $theme-navy ;
 $head-secondary: $theme-navy ;
@@ -95,6 +98,14 @@ body {
 
 .bg-black {
   background-color: $theme-black;
+}
+
+.bg-light-green {
+  background-color: $theme-light-green;
+}
+
+.bg-light-blue {
+  background-color: $theme-light-blue;
 }
 
 .super-text {
@@ -182,6 +193,43 @@ body {
 }
 
 @media (min-width: 1200px) {
+.vision {
+  padding: 0;
+  .icon-box {
+    overflow: visible;
+    position: relative;
+    padding-left: 15%;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    .icon {
+      position: absolute;
+      width: 65%;
+      left: 15%;
+      top: 0;
+      .vision-icon-img {
+        width: 100%;
+      }
+    }
+    .title {
+      position: absolute;
+      bottom: 0;
+      right: 61%;
+      text-align: right;
+      font-size: 28px;
+      color: $theme-dark-gray;
+      line-height: 1.15;
+      .bold {
+        font-weight: 600;
+      }
+      .light {
+        font-weight: 100;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
   .main-message {
     font-size: 48px;
     line-height: 60px;
@@ -206,6 +254,18 @@ body {
     overflow: hidden; 
     padding-bottom: 56.26%; 
     align-items: center;
+  }
+  .youtube-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.26%;
+    >iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   }
   .category-box {
     diaplay: inline-block;
@@ -238,6 +298,18 @@ body {
     overflow: hidden; 
     padding-bottom: 56.26%; 
     align-items: center;
+  }
+  .youtube-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.26%;
+    >iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   }
   .category-box {
     display: inline;
