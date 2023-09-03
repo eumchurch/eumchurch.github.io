@@ -1,14 +1,47 @@
-<section id="message" class="text-center full-height bg-navy-to-blue">
+<section id="message" class="text-center full-height bg-navy-to-blue bg-gray">
     <div class="container">
+        <div class="row title-text" style="height: 200px; text-align: center;">
+            말씀과 묵상
+        </div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-sm-6" style="background-color: orange;">
+                <div class="col-sm-10 col-md-offset-1">
+                    <div class="full-width youtube" style="background-color: yellow;">
+                        <iframe class="full" src="https://www.youtube.com/embed/twLjvxC-yJY?si=4OAtR4Owrofokwon" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <div style="background-color: orange;">
+                            {% for category in site.categories %}
+                                {% if category contains "sermon" %}
+                                    {% for posts in category %}
+                                        {% for post in posts limit:5 %}
+                                        <div style="position: relative;">
+                                            <div style="position: absolute; left: 0;">
+                                                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                                            </div>
+                                            <div style="position: absolute; right: 0;">
+                                                {{ post.date | date: "%Y %B %-d" }}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="background-color: yellow;">
+                오독오독
+            </div>
+
+            <!--<div class="col-md-8 col-md-offset-2">
                 <p>5월 28일 주일설교</p>
                 <h2 class="section-heading"><b>새로운 이끄심</b></h2>
                 <h3><b>사도행전 9:32-42<b/></h3>
                 <hr>
                 <div class="youtube">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/h7GszqSHpGU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
+                </div>-->
                 <!-- <a href="/blog/" style="color: black;" class="btn btn-outline btn-xl"><h5>더 많은 설교 보기</h5></a> -->
                 <!-- {% if site.data-ad-client %}
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -27,7 +60,7 @@
                     <!-- <a href="/blog/" style="color: black;" class="btn btn-outline btn-xl"><h5>더 많은 설교 보기</h5></a>   -->
                 <!-- </div> -->
                 <!-- </div> -->
-            </div>
+            <!--</div>-->
         </div>
     </div>
 </section>

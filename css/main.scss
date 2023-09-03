@@ -117,6 +117,13 @@ body {
   color: $theme-green;
 }
 
+.title-text {
+  color: $theme-black;
+  font-size: 25px;
+  font-weight: 700;
+  font-family: 'SCoreDream';
+}
+
 .narrow-text {
   line-height: 1.25;
 }
@@ -127,16 +134,54 @@ body {
   background: radial-gradient( ellipse, #dbdbdb, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) );
 }
 
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .rounded-button {
-  padding: 2px 15px 2px 15px;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 10px;
   font-size: 14px;
   width: 220px;
   height: 30px;
   border: 2px solid $theme-black; /* 테두리 스타일과 두께 지정 */
   border-radius: 15px;
+  display: flex;
+  position: relative;
 }
 
-@media (min-width: 768px) {
+.content-box {
+  position: relative;
+}
+
+.bold-content {
+  margin-top: 2px;
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+.light-content {
+  margin-top: 2px;
+  font-weight: 200;
+  position: absolute;
+  right: 15px;
+}
+
+.icon-content {
+  position: absolute;
+  right: 1px;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+
+}
+
+@media (min-width: 1200px) {
   .main-message {
     font-size: 48px;
     line-height: 60px;
@@ -168,7 +213,7 @@ body {
   .nav-flex-background {
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1200px) {
   .main-message {
     font-size: 30px;
     line-height: 45px;
