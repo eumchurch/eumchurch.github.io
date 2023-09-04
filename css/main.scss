@@ -108,6 +108,20 @@ body {
   background-color: $theme-light-blue;
 }
 
+.bg-theme-gradient {
+  background:
+    radial-gradient(
+      farthest-side at top right,
+      rgba(143, 198, 214, 1) 40%, 
+      transparent
+    ),
+    linear-gradient(
+      to bottom right,
+      rgb(200, 227, 204) 25%, 
+      rgba(146, 207, 173, 1) 75%
+    );
+}
+
 .super-text {
   color: $theme-black;
   font-size: 70px;
@@ -135,6 +149,10 @@ body {
   font-family: 'SCoreDream';
 }
 
+.dark-gray-text {
+  color: $theme-dark-gray;
+}
+
 .narrow-text {
   line-height: 1.25;
 }
@@ -149,6 +167,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.white-text {
+  color: white;
+  font-weight: 100;
+  font-size: 10px;
+  > a {
+    color: white;
+  }
 }
 
 .rounded-button {
