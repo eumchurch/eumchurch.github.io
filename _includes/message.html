@@ -1,55 +1,106 @@
 <section id="message" class="text-center full-height">
     <div class="container text-color-black">
-        <div class="row text-weight-7 text-size-big text-family-scoredream text-align-center" style="height: 200px;">
+        <div class="row text-title" style="height: 200px;">
             말씀과 묵상
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="col-sm-10 col-md-offset-1" style="padding: 0;">
-                    <div class="full-width youtube-wrapper bg-light-blue">
-                        <iframe src="https://www.youtube.com/embed/twLjvxC-yJY?si=4OAtR4Owrofokwon" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    <div class="full-width">
-                        <a href="{{ post.url | prepend: site.baseurl }}">
-                            <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin-left: 20px; margin-top: 10px;">
-                                복음을 세우는 결정
-                            </div>
-                        </a>
-                        <div class="row" style="padding: 40px 35px 10px 25px;">
-                            <div class="col-sm-6 text-size-middle text-weight-6 text-align-left">
-                                주일설교
-                            </div>
-                            <div class="col-sm-6 text-size-small text-align-right text-weight-6 text-color-gray">
-                                <a href="">+ 더보기</a>
-                            </div>
-                        </div>
-                        <div style="padding-left: 30px; padding-right: 30px;">
-                            {% for category in site.categories %}
-                                {% if category contains "sermon" %}
-                                    {% for posts in category %}
-                                        {% for post in posts limit:6 %}
-                                            {% if forloop.first == false %}
-                                                <a href="{{ post.url | prepend: site.baseurl }}">
-                                                    <div class="row" style="padding:0;">
-                                                        <div class="col-sm-9 text-align-left">
-                                                            {{ post.title }}
-                                                        </div>
-                                                        <div class="col-sm-3 text-align-right" style="padding-left: 0;">
-                                                            {{ post.date | date: "%F" }}
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endfor %}
+                    
+                    {% for category in site.categories %} {% if category contains "sermon" %}
+                        {% for posts in category %} {% if forloop.last == true %}
+                            {% for post in posts limit:6 %}
+
+                                {% if forloop.first == true %}
+
+                                    <div class="full-width youtube rounded">
+                                        <iframe src="https://www.youtube.com/embed/{{ post.youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    </div>
+                                    <a href="{{ post.url | prepend: site.baseurl }}">
+                                        <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin-left: 20px; margin-top: 10px;">
+                                            {{ post.title }}
+                                        </div>
+                                    </a>
+                                    <div class="row" style="padding: 40px 35px 10px 25px;">
+                                        <div class="col-sm-6 text-size-middle text-weight-6 text-align-left">
+                                            주일설교
+                                        </div>
+                                        <div class="col-sm-6 text-size-small text-align-right text-weight-6 text-color-gray">
+                                            <a href="">+ 더보기</a>
+                                        </div>
+                                    </div>
+                                    
+                                {% else %}
+
+                                    <div class="text-color-gray text-weight-4" style="padding-left: 30px; padding-right: 30px;">
+                                        <a href="{{ post.url | prepend: site.baseurl }}">
+                                            <div class="row" style="padding:0;">
+                                                <div class="col-sm-9 text-align-left">
+                                                    {{ post.title }}
+                                                </div>
+                                                <div class="col-sm-3 text-align-right" style="padding-left: 0;">
+                                                    {{ post.date | date: "%F" }}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
                                 {% endif %}
+
                             {% endfor %}
-                        </div>
-                    </div>
+                        {% endif %} {% endfor %}
+                    {% endif %} {% endfor %}
+
                 </div>
             </div>
             <div class="col-sm-6">
-                오독오독
+                <div class="col-sm-10 col-md-offset-1" style="padding: 0;">
+                    
+                    {% for category in site.categories %} {% if category contains "qt" %}
+                        {% for posts in category %} {% if forloop.last == true %}
+                            {% for post in posts limit:6 %}
+
+                                {% if forloop.first == true %}
+
+                                    <div class="full-width youtube rounded">
+                                        <iframe src="https://www.youtube.com/embed/{{ post.youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    </div>
+                                    <a href="{{ post.url | prepend: site.baseurl }}">
+                                        <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin-left: 20px; margin-top: 10px;">
+                                            {{ post.date | date: "%m.%d" }} | {{ post.title }}
+                                        </div>
+                                    </a>
+                                    <div class="row" style="padding: 40px 35px 10px 25px;">
+                                        <div class="col-sm-6 text-size-middle text-weight-6 text-align-left">
+                                            아침말씀묵상
+                                        </div>
+                                        <div class="col-sm-6 text-size-small text-align-right text-weight-6 text-color-gray">
+                                            <a href="">+ 더보기</a>
+                                        </div>
+                                    </div>
+                                    
+                                {% else %}
+
+                                    <div class="text-color-gray text-weight-4" style="padding-left: 30px; padding-right: 30px;">
+                                        <a href="{{ post.url | prepend: site.baseurl }}">
+                                            <div class="row" style="padding:0;">
+                                                <div class="col-sm-9 text-align-left">
+                                                    {{ post.title }}
+                                                </div>
+                                                <div class="col-sm-3 text-align-right" style="padding-left: 0;">
+                                                    {{ post.date | date: "%F" }}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                {% endif %}
+
+                            {% endfor %}
+                        {% endif %} {% endfor %}
+                    {% endif %} {% endfor %}
+
+                </div>
             </div>
         </div>
     </div>

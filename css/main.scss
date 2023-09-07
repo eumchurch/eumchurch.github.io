@@ -40,8 +40,10 @@ $theme-blue: #00a2db;
 $theme-light-green: #82c78e;
 $theme-light-blue: #abd3dd;
 $theme-light-gray: #f1f1f1;
-$theme-dark-gray: #272727;
+$theme-brightgray: #8c8c8c;
 $theme-gray: #565656;
+$theme-darkgray: #272727;
+$theme-black: #000000;
 
 $head-primary: $theme-navy ;
 $head-secondary: $theme-navy ;
@@ -60,7 +62,7 @@ a {
 
 body {
   line-height: 1.8;
-  color: $theme-dark-gray;
+  color: $theme-darkgray;
   font-size: 16px;
   font-weight: 300;
   font-family: 'Noto Sans KR';
@@ -68,6 +70,12 @@ body {
 
 // text configuration
 .text-family-scoredream { font-family: 'SCoreDream'; }
+.text-title {
+  color: $theme-black;
+  font-weight: 800;
+  font-size: 25px;
+  text-align: center;
+}
 
 // text-size
 .text-size-super { font-size: 70px; }
@@ -88,11 +96,19 @@ body {
 .text-weight-1 { font-weight: 100; }
 
 // text-color
-.text-color-black { color: #000000; }
-.text-color-darkgray { color: $theme-dark-gray; }
+.text-color-white { 
+  color: white; 
+  > a {
+    color: white;
+  } 
+}
+.text-color-black { color: $theme-black; }
+.text-color-black { color: $theme-black; }
+.text-color-darkgray { color: $theme-darkgray; }
 .text-color-gray { color: $theme-gray; }
 .text-color-blue { color: $theme-blue; }
 .text-color-green { color: $theme-green; }
+.text-color-bright { color: $theme-brightgray; }
 
 // text-spacing
 .text-narrow { line-height: 1.25; }
@@ -107,6 +123,8 @@ body {
 .bg-light-gray { background-color: $theme-light-gray; }
 .bg-light-green { background-color: $theme-light-green; }
 .bg-light-blue { background-color: $theme-light-blue; }
+.bg-darkgray { background-color: $theme-darkgray; }
+.bg-black { background-color: $theme-black; }
 .bg-theme-gradient {
   background:
     radial-gradient(
@@ -143,10 +161,6 @@ body {
   flex: 1;
 }
 
-.dark-gray-text {
-  color: $theme-dark-gray;
-}
-
 .narrow-text {
   line-height: 1.25;
 }
@@ -169,10 +183,14 @@ body {
   margin: 10px;
   width: 220px;
   height: 30px;
-  border: 2px solid $theme-dark-gray; /* 테두리 스타일과 두께 지정 */
+  border: 2px solid $theme-darkgray; /* 테두리 스타일과 두께 지정 */
   border-radius: 15px;
   display: flex;
   position: relative;
+}
+
+.rounded {
+  border-radius: 20px;
 }
 
 .content-box {
@@ -228,6 +246,7 @@ body {
       text-align: right;
       font-size: 28px;
       color: $theme-gray;
+      font-family: "SCoreDream";
       line-height: 1.15;
       .bold {
         font-weight: 600;
@@ -260,12 +279,6 @@ body {
     height: 60px;
   }
   .youtube {
-    position: relative; 
-    overflow: hidden; 
-    padding-bottom: 56.26%; 
-    align-items: center;
-  }
-  .youtube-wrapper {
     position: relative;
     width: 100%;
     height: 0;
