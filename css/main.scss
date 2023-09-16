@@ -70,6 +70,7 @@ body {
 
 // text configuration
 .text-family-scoredream { font-family: 'SCoreDream'; }
+.text-family-gyeonggi { font-family: 'GyeonggiTitle'; }
 .text-title {
   color: $theme-black;
   font-weight: 800;
@@ -79,10 +80,13 @@ body {
 
 // text-size
 .text-size-super { font-size: 70px; }
+.text-size-huge { font-size: 40px; }
 .text-size-big { font-size: 25px; }
 .text-size-large { font-size: 22px; }
 .text-size-middle { font-size: 19px; }
-.text-size-small { font-size: 14px; }
+.text-size-middle { font-size: 19px; }
+.text-size-small { font-size: 15px; }
+.text-size-tiny { font-size: 14px; }
 
 // text-weight
 .text-weight-9 { font-weight: 900; }
@@ -299,7 +303,7 @@ body {
   .nav-flex-background {
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1199px) {
   .main-message {
     font-size: 30px;
     line-height: 45px;
@@ -315,8 +319,8 @@ body {
     height: 50px;
   }
   .nav-logo {
-    margin-top: 5px;
-    width: 100px;
+    margin-top: 0px;
+    width: 200px;
     height: 40px;
   }
   .youtube {
