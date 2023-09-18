@@ -27,3 +27,21 @@
     </div>
 </section>
 
+<script id="code">
+  let lat = 37.5543072;
+  let lng = 126.9372748;
+  var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(lat, lng), //지도의 초기 중심 좌표
+    zoom: 17, //지도의 초기 줌 레벨
+    minZoom: 8, //지도의 최소 줌 레벨
+    zoomControl: true, //줌 컨트롤의 표시 여부
+    zoomControlOptions: { //줌 컨트롤의 옵션
+      position: naver.maps.Position.TOP_RIGHT
+    }
+  });
+  var marker = new naver.maps.Marker({
+      position: new naver.maps.LatLng(lat, lng),
+      map: map
+  });
+</script>
+
