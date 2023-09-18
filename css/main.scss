@@ -282,6 +282,13 @@ body {
     width: 300px;
     height: 60px;
   }
+  .nav-logo {
+    > img {
+      margin-top: 0px;
+      width: 300px;
+      height: 60px;
+    }
+  }
   .youtube {
     position: relative;
     width: 100%;
@@ -301,6 +308,7 @@ body {
     diaplay: inline-block;
   }
   .nav-flex-background {
+    padding-top: 50px;
   }
 }
 @media screen and (max-width: 1199px) {
@@ -319,9 +327,13 @@ body {
     height: 50px;
   }
   .nav-logo {
-    margin-top: 0px;
-    width: 200px;
-    height: 40px;
+    padding-top: 5px;
+    padding-left: 10px;
+    > img {
+      margin-top: 0px;
+      width: 200px;
+      height: 40px;
+    }
   }
   .youtube {
     position: relative; 
@@ -347,9 +359,15 @@ body {
   .nav-flex-background {
     background-color: white;
     width: 100%;
+    margin: 0;
+    text-align: right;
   }
   .margin-mobile {
     margin-left: 5%;
     margin-right: 5%;
+  }
+  .nav-menu-button {
+    margin-top: 5px;
+    margin-right: 10px;
   }
 }

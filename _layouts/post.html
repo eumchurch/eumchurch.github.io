@@ -3,25 +3,24 @@ layout: default
 ---
 
 <!-- Post Header -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10 col-md-offset-1">
-                <div class="post-heading text-align-center" style="padding-top: 200px;">
-                    <span class="text-size-huge text-family-scoredream text-weight-4">{{ page.title }}</span><br/>
-                    {% if page.subtitle %}
-                        <span class="text-size-large text-family-scoredream text-weight-3">{{ page.subtitle }}</span><br/>
-                    {% endif %}
-                    <span class="meta text-size-small text-family-scoredream text-weight-2">
-                        {{ page.date | date: "%B %-d, %Y" }}<br/>
-                    </span>
-                    <!-- <a href="#post" class="page-scroll"><i class="fa fa-fw fa-2x fa-arrow-down"></i></a> -->
-                    <hr/>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10" style="background-color: orange;">
+            <div class="post-heading text-align-center" style="padding-top: 200px;">
+                <span class="text-size-huge text-family-scoredream text-weight-4">{{ page.title }}</span><br/>
+                {% if page.subtitle %}
+                    <span class="text-size-large text-family-scoredream text-weight-3">{{ page.subtitle }}</span><br/>
+                {% endif %}
+                <span class="meta text-size-small text-family-scoredream text-weight-2">
+                    {{ page.date | date: "%B %-d, %Y" }}<br/>
+                </span>
+                <!-- <a href="#post" class="page-scroll"><i class="fa fa-fw fa-2x fa-arrow-down"></i></a> -->
             </div>
-            <hr/>
         </div>
+        <hr/>
     </div>
-<!-- <hr> -->
+</div>
+<hr>
 <!-- Post Content -->
 <article>
     <div id="post" class="container">
