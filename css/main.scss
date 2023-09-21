@@ -47,8 +47,10 @@ $theme-black: #000000;
 
 $head-primary: $theme-navy ;
 $head-secondary: $theme-navy ;
-$theme-primary: $theme-navy ;
-$theme-secondary: $theme-navy ;
+
+$theme-primary: $theme-blue ;
+$theme-secondary: $theme-green ;
+$theme-tertiary:   $theme-navy;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
@@ -297,6 +299,33 @@ body {
   }
 }
 
+.custom-nav {
+    > li {
+        list-style-type: none;
+        padding: 10px;
+        color: yellow;
+        > a,
+        > a:focus {
+            color: $theme-green;
+            &:hover {
+                text-decoration: none;
+                color: #029565;
+            }
+        }
+        &.active {
+            > a,
+            > a:focus {
+                color: $theme-green !important;
+                background-color: transparent;
+                &:hover {
+                    text-decoration: none;
+                    background-color: $theme-green;
+                }
+            }
+        }
+    }
+}
+
 @media (max-width: 767px) {
   .main-message {
     font-size: 30px;
@@ -326,6 +355,7 @@ body {
     margin: 0;
     text-align: right;
     .nav-item {
+      color: $theme-darkgray;
       font-size: 15px;
       font-weight: 300;
       font-family: 'GyeonggiTitle';
@@ -366,6 +396,7 @@ body {
   .nav-item-list {
     padding-top: 50px;
     > li > a > .nav-item {
+      color: $theme-darkgray;
       font-size: 13px;
       font-weight: 300;
       font-family: 'GyeonggiTitle';
@@ -390,6 +421,7 @@ body {
   .nav-item-list {
     padding-top: 50px;
     > li > a > .nav-item {
+      color: $theme-darkgray;
       font-size: 15px;
       font-weight: 300;
       font-family: 'GyeonggiTitle';
