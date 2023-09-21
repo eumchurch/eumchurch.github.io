@@ -170,9 +170,7 @@ body {
 }
 
 .circle {
-  width: 300px;
-  height: 120px;
-  background: radial-gradient( ellipse, #dbdbdb, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) );
+  background: radial-gradient( ellipse, #dbdbdb, #dbdbdb, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) );
 }
 
 .row {
@@ -262,63 +260,48 @@ body {
   }
 }
 
-@media (min-width: 1200px) {
-  .main-message {
-    font-size: 48px;
-    line-height: 60px;
-    text-align: left;
-  }
-  .main-logo-image {
-    width: 300px;
-  }
-  .name-logo-image {
-    width: 160px;
-  }
-  .navbar-flex {
-    height: 105px;
-  }
-  .nav-logo {
-    margin-top: 15px;
-    width: 300px;
-    height: 60px;
-  }
-  .nav-logo {
-    > img {
-      margin-top: 0px;
-      width: 300px;
-      height: 60px;
-    }
-  }
-  .youtube {
-    position: relative;
+.relative-main-logo {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 157%;
+  .logo {
+    position: absolute;
     width: 100%;
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 56.26%;
-    padding-left: 0;
-    >iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
-    }
+    height: 82%;
+    top: 0;
+    left: 0;
   }
-  .category-box {
-    diaplay: inline-block;
-  }
-  .nav-flex-background {
-    padding-top: 50px;
+  .shadow {
+    position: absolute;
+    width: 80%;
+    height: 18%;
+    top: 82%;
+    left: 0;
   }
 }
-@media screen and (max-width: 1199px) {
+
+.youtube {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.26%;
+  padding-left: 0;
+  >iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+}
+
+@media (max-width: 767px) {
   .main-message {
     font-size: 30px;
     line-height: 45px;
     text-align: left;
-  }
-  .main-logo-image {
-    width: 90%;
   }
   .name-logo-image {
     width: 160px;
@@ -335,32 +318,18 @@ body {
       height: 40px;
     }
   }
-  .youtube {
-    position: relative; 
-    overflow: hidden; 
-    padding-bottom: 56.26%; 
-    align-items: center;
-  }
-  .youtube-wrapper {
-    position: relative;
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-    padding-bottom: 56.26%;
-    >iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-  }
   .category-box {
     display: inline;
   }
-  .nav-flex-background {
-    background-color: white;
+  .nav-item-list {
     width: 100%;
     margin: 0;
     text-align: right;
+    .nav-item {
+      font-size: 15px;
+      font-weight: 300;
+      font-family: 'GyeonggiTitle';
+    }
   }
   .margin-mobile {
     margin-left: 5%;
@@ -371,3 +340,61 @@ body {
     margin-right: 10px;
   }
 }
+
+@media (min-width: 768px) {
+  .main-message {
+    font-size: 48px;
+    line-height: 60px;
+    text-align: left;
+  }
+  .name-logo-image {
+    width: 160px;
+  }
+  .navbar-flex {
+    height: 105px;
+  }
+  .nav-logo {
+    margin-top: 15px;
+    width: 300px;
+    height: 60px;
+    > img {
+      margin-top: 0px;
+      width: 300px;
+      height: 60px;
+    }
+  }
+  .nav-item-list {
+    padding-top: 50px;
+    > li > a > .nav-item {
+      font-size: 13px;
+      font-weight: 300;
+      font-family: 'GyeonggiTitle';
+    }
+  }
+  .category-box {
+    diaplay: inline-block;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-logo {
+    margin-top: 15px;
+    width: 300px;
+    height: 60px;
+    >img {
+      margin-top: 0px;
+      width: 300px;
+      height: 60px;
+    }
+  }
+  .nav-item-list {
+    padding-top: 50px;
+    > li > a > .nav-item {
+      font-size: 15px;
+      font-weight: 300;
+      font-family: 'GyeonggiTitle';
+      
+    }
+  }
+}
+
