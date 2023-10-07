@@ -238,9 +238,6 @@ body {
       width: 65%;
       left: 15%;
       top: 0;
-      .vision-icon-img {
-        width: 100%;
-      }
     }
     .title {
       position: absolute;
@@ -376,17 +373,28 @@ body {
     margin-top: 5px;
     margin-right: 10px;
   }
-  .flex-container {
+  .flex-sm-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-md-container {
     display: flex;
     flex-direction: column;
   }
   .flex-br {
+  }
+  .vision-icon-img {
+    width: 100px;
   }
   .contact-container {
     padding-top: 0;
   }
   .contact-box {
     margin-top: 0;
+  }
+  .vision {
+    width: 320px;
+    height: 320px;
   }
 }
 
@@ -432,18 +440,29 @@ body {
   .category-box {
     diaplay: inline-block;
   }
-  .flex-container {
+  .flex-sm-container {
     display: flex;
     flex-direction: row;
   }
+  .flex-md-container {
+    display: flex;
+    flex-direction: column;
+  }
   .flex-br {
     display: none;
+  }
+  .vision-icon-img {
+    width: 200px;
   }
   .contact-container {
     padding-top: 110px;
   }
   .contact-box {
     margin-top: 0;
+  }
+  .vision {
+    width: 480px;
+    height: 480px;
   }
 }
 
@@ -466,16 +485,33 @@ body {
       font-size: 15px;
       font-weight: 300;
       font-family: 'GyeonggiTitle';
-      
     }
+  }
+  .flex-md-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .vision-icon-img {
+    width: 160px;
   }
   .contact-container {
     padding-top: 150px;
   }
+  .vision {
+    width: 960px;
+    height: 960px;
+  }
 }
 
 @media (min-width: 1200px) {
+  .vision-icon-img {
+    width: 190px;
+  }
   .contact-container {
     padding-top: 200px;
+  }
+  .vision {
+    width: 1120px;
+    height: 1120px;
   }
 }
