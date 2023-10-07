@@ -1,33 +1,96 @@
 <section id="news" class="download bg-green text-center">
     <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-md-offset-2">
-                <div class="container-fluid index">
-                    <div class="row index all-posts">
+        {% for category in site.categories %}
 
-                      {% for category in site.categories %}
-                        {% if category[0] == "bulletin" or category[0] == "ministry" %}
-                          <div class="col-md-6 category-box">
-                            <img class="hidden-xs" src="{{ site.baseurl }}/img/{{ category | first }}.png" style="background-color: #303a4b; width: 100%;">
-                            <h3 id="{{ category | first }}-ref" class="margin-mobile">{{ category | first }}</h3>
-                            <ul style="list-style: none;">
-                              {% for posts in category %}
-                                {% for post in posts %}
-                                  <li>
-                                    <!-- problem of for cycle can't use images <img src="/{{ post.header-img | prepend: site.baseurl }}" class="img-responsive" alt="{{ post.title }}"> -->
-                                    <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
-                                    <small>{{ post.date | date: "%Y년 %-m월 %-d일" }}</small>
-                                  </li>
-                                {% endfor %}
-                              {% endfor %}
-
-                            </ul>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                  </div>
-                </div>
+          {% if category[0] == "introduction" %}
+            <div class="row" style="padding-top: 70px;">
+              <div class="row full-width" style="text-align:left;">
+                <div class="col-xs-12 text-title" style="text-align: left;">사역 소개</div>
+              </div>
             </div>
-        </div>
+            <hr style="width: 100%;">
+            {% for posts in category %} {% if forloop.last == true %}
+              <div class="row" style="padding-top: 70px; text-align: left;">
+                <div class="col-xs-12">
+                  {% for post in posts limit 6 %}
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                      <div class="news-box">
+                        <div class="thumbnail rounded">
+                          <img src={{ post.header-img }}>
+                        </div>
+                        <div class="date">
+                          {{ post.date | date: "%m.%d" }}
+                        </div>
+                        <div class="title">
+                          {{ post.title }}
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %} {% endfor %}
+          {% endif %}
+
+          {% if category[0] == "ministry" %}
+            <div class="row">
+              <div class="row full-width" style="text-align:left;">
+                <div class="col-xs-12 text-title" style="text-align: left;">히스토리</div>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            {% for posts in category %} {% if forloop.last == true %}
+              <div class="row" style="padding-top: 70px; text-align: left;">
+                <div class="col-xs-12">
+                  {% for post in posts limit 6 %}
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                      <div class="news-box">
+                        <div class="thumbnail rounded">
+                          <img src={{ post.header-img }}>
+                        </div>
+                        <div class="date">
+                          {{ post.date | date: "%m.%d" }}
+                        </div>
+                        <div class="title">
+                          {{ post.title }}
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %} {% endfor %}
+          {% endif %}
+
+          {% if category[0] == "bulletin" %}
+            <div class="row" style="padding-top: 70px;">
+              <div class="row full-width" style="text-align:left;">
+                <div class="col-xs-12 text-title" style="text-align: left;">주보</div>
+              </div>
+            </div>
+            <hr style="width: 100%;">
+            {% for posts in category %} {% if forloop.last == true %}
+              <div class="row" style="padding-top: 70px; text-align: left;">
+                <div class="col-xs-12">
+                  {% for post in posts limit 6 %}
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                      <div class="news-box">
+                        <div class="thumbnail rounded">
+                          <img src={{ post.header-img }}>
+                        </div>
+                        <div class="date">
+                          {{ post.date | date: "%m.%d" }}
+                        </div>
+                        <div class="title">
+                          {{ post.title }}
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %} {% endfor %}
+          {% endif %}
+        {% endfor %}
     </div>
 </section>

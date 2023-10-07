@@ -75,6 +75,13 @@ a:active {
   text-decoration: none;
 }
 
+hr {
+    max-width: 100%;
+    margin: 5px auto 0;
+    border-width: 1px;
+    border-color: $theme-darkgray;
+}
+
 body {
   line-height: 1.8;
   color: $theme-darkgray;
@@ -350,10 +357,40 @@ body {
   margin-left: 4.17%;
 }
 
+.news-box {
+  padding: 10px;
+  float: left;
+  .thumbnail {
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    overflow: hidden;
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit:cover;
+    }
+  }
+  .date {
+    font-size: 14px;
+    color: $theme-brightgray;
+    font-weight: 400;
+    padding-left: 15px;
+    height: 20px;
+  }
+  .title {
+    font-size: 19px;
+    color: $theme-gray;
+    font-weight: 600;
+    padding-left: 15px;
+    width: 190px;
+  }
+}
+
 @media (max-width: 767px) {
   .text-size-header { font-size: 50px; }
   .front-content-top {
-    margin-top: 60px;
+    margin-top: 55px;
   }
   .header {
     padding-top: 60px;
@@ -369,6 +406,12 @@ body {
   }
   .navbar-flex {
     height: 50px;
+  }
+  .padding-nav-top {
+    padding-top: 70px;
+  }
+  .padding-nav-bottom {
+    padding-bottom: 50px;
   }
   .nav-logo {
     padding-top: 5px;
@@ -445,6 +488,12 @@ body {
   }
   .navbar-flex {
     height: 105px;
+  }
+  .padding-nav-top {
+    padding-top: 105px;
+  }
+  .padding-nav-bottom {
+    padding-bottom: 105px;
   }
   .nav-logo {
     margin-top: 15px;
