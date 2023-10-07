@@ -382,6 +382,12 @@ body {
   }
   .flex-br {
   }
+  .contact-container {
+    padding-top: 0;
+  }
+  .contact-box {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -433,6 +439,12 @@ body {
   .flex-br {
     display: none;
   }
+  .contact-container {
+    padding-top: 110px;
+  }
+  .contact-box {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 992px) {
@@ -457,7 +469,13 @@ body {
       
     }
   }
+  .contact-container {
+    padding-top: 150px;
+  }
 }
 
 @media (min-width: 1200px) {
+  .contact-container {
+    padding-top: 200px;
+  }
 }
