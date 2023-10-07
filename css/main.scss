@@ -81,7 +81,6 @@ body {
 }
 
 // text-size
-.text-size-super { font-size: 70px; }
 .text-size-huge { font-size: 40px; }
 .text-size-big { font-size: 25px; }
 .text-size-large { font-size: 22px; }
@@ -184,7 +183,7 @@ body {
 .rounded-button {
   padding-left: 0;
   padding-right: 0;
-  margin: 10px;
+  margin: 2px 10px 2px 10px;
   width: 220px;
   height: 30px;
   border: 2px solid $theme-darkgray; /* 테두리 스타일과 두께 지정 */
@@ -327,6 +326,14 @@ body {
 }
 
 @media (max-width: 767px) {
+  .text-size-header { font-size: 50px; }
+  .front-content-top {
+    margin-top: 60px;
+  }
+  .header {
+    padding-top: 60px;
+    padding-bottom: 40px;
+  }
   .main-message {
     font-size: 30px;
     line-height: 45px;
@@ -369,9 +376,23 @@ body {
     margin-top: 5px;
     margin-right: 10px;
   }
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-br {
+  }
 }
 
 @media (min-width: 768px) {
+  .text-size-header { font-size: 55px; }
+  .front-content-top {
+    margin-top: 110px;
+  }
+  .header {
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
   .main-message {
     font-size: 48px;
     line-height: 60px;
@@ -405,9 +426,17 @@ body {
   .category-box {
     diaplay: inline-block;
   }
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .flex-br {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) {
+  .text-size-header { font-size: 70px; }
   .nav-logo {
     margin-top: 15px;
     width: 300px;
@@ -430,3 +459,5 @@ body {
   }
 }
 
+@media (min-width: 1200px) {
+}
