@@ -58,8 +58,21 @@ $theme-tertiary:   $theme-navy;
         "base"
 ;
 
-a {
-  text-color: bs-example-navbar-collapse-1
+a:link {
+  color: $theme-gray;
+  text-decoration: none;
+}
+a:visited {
+  color: $theme-gray;
+  text-decoration: none;
+}
+a:hover {
+  color: $theme-green;
+  text-decoration: none;
+}
+a:active {
+  color: $theme-green;
+  text-decoration: none;
 }
 
 body {
