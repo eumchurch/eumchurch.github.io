@@ -1,10 +1,9 @@
 ---
 layout:     post
-title:      "이음교회 비전 소개"
+title:      "이음교회"
 subtitle:   "하나님 나라와 세상을 잇는 교회"
 date:       2020-01-12
-author:     "이경수"
-header-img: "img/post-bg-01.jpg"
+category: 	introduction
 ---
 
 <a name="1"></a>

@@ -163,6 +163,21 @@ body {
       rgba(146, 207, 173, 1) 75%
     );
 }
+.horizontal-scroll-box {
+/*  overflow: scroll;*/
+/*  overflow: auto;*/
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: 350px;
+  background:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1) 5%, 
+      rgba(255, 255, 255, 0) 90%,
+      rgba(255, 255, 255, 1) 5%
+    );
+}
 
 .full {
   width: 100%;
