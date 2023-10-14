@@ -81,6 +81,18 @@ hr {
     border-width: 1px;
     border-color: $theme-darkgray;
 }
+hr.heavy {
+    width: 100%;
+    border-color: $theme-darkgray;
+}
+hr.light {
+    width: 80%;
+    border-color: #cdcdcd;
+}
+hr.margin {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
 body {
   line-height: 1.8;
@@ -511,13 +523,13 @@ body {
     padding-bottom: 105px;
   }
   .nav-logo {
-    margin-top: 15px;
-    width: 300px;
-    height: 60px;
+    margin-top: 25px;
+    width: 250px;
+    height: 50px;
     > img {
       margin-top: 0px;
-      width: 300px;
-      height: 60px;
+      width: 250px;
+      height: 50px;
     }
   }
   .nav-item-list {
