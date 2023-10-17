@@ -35,8 +35,8 @@
 
 // variables.less link and gradient background
 $theme-navy: #303a4b;
-$theme-green: #029565;
-$theme-blue: #00a2db;
+$theme-green: #1CAC55;
+$theme-blue: #289BD9;
 $theme-light-green: #82c78e;
 $theme-light-blue: #abd3dd;
 $theme-light-gray: #f1f1f1;
@@ -157,7 +157,6 @@ body {
 
 // background-color
 .bg-white { background-color: white; }
-.bg-light-gray { background-color: $theme-light-gray; }
 .bg-light-green { background-color: $theme-light-green; }
 .bg-light-blue { background-color: $theme-light-blue; }
 .bg-darkgray { background-color: $theme-darkgray; }
@@ -429,7 +428,10 @@ body {
     text-align: left;
   }
   .name-logo-image {
-    width: 160px;
+    width: 180px;
+  }
+  .bg-light-gray { 
+    background-color: $theme-light-gray;
   }
   .navbar-flex {
     height: 50px;
@@ -511,7 +513,15 @@ body {
     text-align: left;
   }
   .name-logo-image {
-    width: 160px;
+    width: 200px;
+  }
+  .bg-light-gray { 
+    background:
+      linear-gradient(
+        to right,
+        $theme-light-gray 0%,
+        white 100%
+      );
   }
   .navbar-flex {
     height: 105px;
@@ -581,6 +591,9 @@ body {
       width: 300px;
       height: 60px;
     }
+  }
+  .name-logo-image {
+    width: 250px;
   }
   .nav-item-list {
     padding-top: 50px;
