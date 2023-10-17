@@ -484,10 +484,11 @@ body {
   .flex-br {
   }
   .contact-container {
-    padding-top: 0;
+    padding-top: 100px;
   }
   .contact-box {
     margin-top: 0;
+    padding-top: 0;
   }
   .icon-box {
     width: 160px;
@@ -495,6 +496,13 @@ body {
     .title {
       font-size: 16px;
     }
+  }
+  .footer-flex-padding {
+    padding-top: 15px;
+  }
+  .map {
+    width: 100%;
+    height: 366px;
   }
 }
 
@@ -566,10 +574,11 @@ body {
     display: none;
   }
   .contact-container {
-    padding-top: 110px;
+    padding-top: 100px;
   }
   .contact-box {
     margin-top: 0;
+    padding-top: 0;
   }
   .icon-box {
     width: 240px;
@@ -577,6 +586,13 @@ body {
     .title {
       font-size: 24px;
     }
+  }
+  .footer-flex-padding {
+    padding-top: 30px;
+  }
+  .map {
+    width: 690px;
+    height: 366px;
   }
 }
 
@@ -609,7 +625,7 @@ body {
     flex-direction: row;
   }
   .contact-container {
-    padding-top: 150px;
+    padding-top: 100px;
   }
   .icon-box {
     width: 230px;
@@ -618,6 +634,10 @@ body {
       font-size: 23px;
     }
   }
+  .map {
+    width: 520px;
+    height: 276px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -625,7 +645,7 @@ body {
     width: 190px;
   }
   .contact-container {
-    padding-top: 200px;
+    padding-top: 100px;
   }
   .icon-box {
     width: 270px;
@@ -633,5 +653,9 @@ body {
     .title {
       font-size: 27px;
     }
+  }
+  .map {
+    width: 730px;
+    height: 390px;
   }
 }
