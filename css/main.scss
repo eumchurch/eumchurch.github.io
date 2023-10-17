@@ -504,6 +504,10 @@ body {
     width: 100%;
     height: 366px;
   }
+  .vertical-line-container {
+    height: 100%;
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -594,6 +598,15 @@ body {
     width: 690px;
     height: 366px;
   }
+  .vertical-line-container {
+    height: 100%;
+    padding-top: 280px;
+  }
+  .vertical-line {
+    width: 0;
+    height: 160px;
+    border-left: 1px solid #cdcdcd;
+  }
 }
 
 @media (min-width: 992px) {
@@ -638,6 +651,15 @@ body {
     width: 520px;
     height: 276px;
   }
+  .vertical-line-container {
+    height: 100%;
+    padding-top: 300px;
+  }
+  .vertical-line {
+    width: 0;
+    height: 160px;
+    border-left: 1px solid #cdcdcd;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -657,5 +679,14 @@ body {
   .map {
     width: 730px;
     height: 390px;
+  }
+  .vertical-line-container {
+    height: 100%;
+    padding-top: 350px;
+  }
+  .vertical-line {
+    width: 0;
+    height: 160px;
+    border-left: 1px solid #cdcdcd;
   }
 }
