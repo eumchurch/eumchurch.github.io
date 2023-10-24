@@ -1,36 +1,37 @@
 <section id="news" class="download bg-green text-center">
     <div class="container">
-        {% for category in site.categories %}
-
-          {% if category[0] == "ministry" %}
-            <div class="row">
-              <div class="row full-width" style="text-align:left;">
+        <div class="row">
+            <div class="row full-width" style="text-align:left;">
                 <div class="col-xs-12 text-title" style="text-align: left;">히스토리</div>
-              </div>
             </div>
-            <hr style="width: 100%;">
-            {% for posts in category %} {% if forloop.last == true %}
-              <div class="row" style="padding-top: 70px; text-align: left;">
-                <div class="col-xs-12">
-                  {% for post in posts limit 6 %}
+        </div>
+        <hr class="heavy" style="padding-bottom: 60px;">
+
+        <div class="news-scrollview">
+            
+            <div class="news-container">
+            
+            {% for post in site.categories.ministry %}
+            
+                <div>
                     <a href="{{ post.url | prepend: site.baseurl }}">
-                      <div class="news-box">
-                        <div class="thumbnail rounded">
-                          <img src={{ post.header-img }}>
+                        <div class="news-item">
+                            <div class="thumbnail rounded">
+                                <img src={{ post.header-img }}>
+                            </div>
+                            <div class="date">
+                                {{ post.date | date: "%m.%d" }}
+                            </div>
+                            <div class="title">
+                                {{ post.title }}
+                            </div>
                         </div>
-                        <div class="date">
-                          {{ post.date | date: "%m.%d" }}
-                        </div>
-                        <div class="title">
-                          {{ post.title }}
-                        </div>
-                      </div>
                     </a>
-                  {% endfor %}
                 </div>
-              </div>
-            {% endif %} {% endfor %}
-          {% endif %}
-        {% endfor %}
+
+            {% endfor %}
+
+            </div>
+        </div>
     </div>
 </section>
