@@ -387,10 +387,42 @@ body {
   margin-left: 4.17%;
 }
 
+.news-scrollcontrol {
+  position: absolute;
+  width: 64px; 
+  height: 320px; 
+  top: 0px; 
+  .scrollbutton {
+    border-width: 0; 
+    background-color: transparent; 
+    padding: 0;
+    padding-top: 75px;
+  }
+}
+
+.left {
+  background:
+    linear-gradient(
+      to right,
+      white 60%, 
+      transparent
+    );
+}
+
+.right {
+  background:
+    linear-gradient(
+      to right,
+      transparent 0%, 
+      white 40%
+    );
+}
+
 .news-scrollview {
   text-align:left;
   padding: 0;
   overflow: scroll;
+  margin: -15px;
   .news-container {
     display: flex;
     padding: 0 50px 0 50px;
@@ -522,6 +554,24 @@ body {
   .vertical-line-container {
     height: 100%;
     display: none;
+  }
+  .news-scrollcontrol {
+    display: none;
+  }
+  .news-scrollview {
+    .news-container {
+      padding: 0;
+      .news-item {
+        padding: 10px;
+        width: 160px;
+        .thumbnail {
+          height: 140px;
+        }
+        .title {
+          font-size: 16px;
+        }
+      }
+    }
   }
 }
 
