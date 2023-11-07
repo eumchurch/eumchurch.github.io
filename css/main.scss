@@ -460,6 +460,10 @@ body {
   }
 }
 
+.wide-enter {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .text-size-header { font-size: 50px; }
   .front-content-top {
@@ -753,5 +757,8 @@ body {
     width: 0;
     height: 160px;
     border-left: 1px solid #cdcdcd;
+  }
+  .wide-enter {
+    display: block;
   }
 }
