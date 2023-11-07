@@ -423,6 +423,8 @@ body {
   padding: 0;
   overflow: scroll;
   margin: -15px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   .news-container {
     display: flex;
     padding: 0 50px 0 50px;
@@ -458,6 +460,9 @@ body {
       }
     }
   }
+}
+.news-scrollview::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 .wide-enter {
