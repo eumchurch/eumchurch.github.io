@@ -1,0 +1,51 @@
+---
+layout: post
+title: "주일설교"
+---
+<div class="container-fluid index">
+
+    <h2 class="header" itemprop="headline">모든 게시글</h2>
+  
+    {% for post in site.categories.sermon %}
+        {% if forloop.first %}
+
+    <div class="col-md-12 content-panel articles">
+        <h2 id="{{ this_year }}-ref">{{ this_year }}</h2>
+        <!-- <ul style="list-style: none;"> -->
+
+        {% endif %}
+
+        <div class="text-color-gray text-weight-3" style="padding: 0 0 10px 0;">
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                <div class="row">
+                    <div class="flex-sm-container col-xs-9 text-align-left">
+                        <div class="text-size-middle text-weight-4 text-color-darkgray">{{ post.title }}</div>
+                        <div class="text-size-small text-weight-3 flex-list-subtitle">| {{ post.subtitle }}</div>
+                    </div>
+                    <div class="col-xs-3 text-align-right" style="padding-left: 0;">
+                        {{ post.date | date: "%m-%d" }}
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% if forloop.last %}
+
+    </div>
+
+        {% else %}
+
+            {% if this_year != next_year %}
+    </div>
+    <div class="col-md-12 content-panel articles">
+        <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
+
+            {% endif %}
+
+        {% endif %}
+
+     {% endfor %}
+
+  </div>
+
+</div>

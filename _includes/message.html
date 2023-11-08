@@ -7,49 +7,45 @@
             <div class="col-sm-6">
                 <div class="col-sm-12 col-md-10 col-md-offset-1" style="padding: 0 0 70px 0;">
                     
-                    {% for category in site.categories %} {% if category contains "sermon" %}
-                        {% for posts in category %} {% if forloop.last == true %}
-                            {% for post in posts limit:6 %}
+                {% for post in site.categories.sermon limit:6 %}
 
-                                {% if forloop.first == true %}
+                    {% if forloop.first == true %}
 
-                                    <div class="full-width youtube rounded">
-                                        <iframe src="https://www.youtube.com/embed/{{ post.youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                    </div>
-                                    <a href="{{ post.url | prepend: site.baseurl }}">
-                                        <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin: 30px 15px 0px 15px; height: 50px; line-height: 1.1;">
-                                            {{ post.title }}
-                                        </div>
-                                    </a>
-                                    <div class="row" style="padding: 30px 30px 10px 20px;">
-                                        <div class="col-xs-6 text-size-middle text-weight-6 text-align-left">
-                                            주일설교
-                                        </div>
-                                        <div class="col-xs-6 text-size-tiny text-align-right text-weight-6 text-color-gray">
-                                            <a href="">+ 더보기</a>
-                                        </div>
-                                    </div>
-                                    
-                                {% else %}
+                    <div class="full-width youtube rounded">
+                        <iframe src="https://www.youtube.com/embed/{{ post.youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin: 30px 15px 0px 15px; height: 50px; line-height: 1.1;">
+                            {{ post.title }}
+                        </div>
+                    </a>
+                    <div class="row" style="padding: 30px 30px 10px 20px;">
+                        <div class="col-xs-6 text-size-middle text-weight-6 text-align-left">
+                            주일설교
+                        </div>
+                        <div class="col-xs-6 text-size-tiny text-align-right text-weight-6 text-color-gray">
+                            <a href="/sermon/">+ 더보기</a>
+                        </div>
+                    </div>
+                    
+                    {% else %}
 
-                                    <div class="text-color-gray text-weight-4" style="padding: 0 25px 0 25px;">
-                                        <a href="{{ post.url | prepend: site.baseurl }}">
-                                            <div class="row" style="padding:0;">
-                                                <div class="col-xs-9 text-align-left">
-                                                    {{ post.title }}
-                                                </div>
-                                                <div class="col-xs-3 text-align-right" style="padding-left: 0;">
-                                                    {{ post.date | date: "%m-%d" }}
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                    <div class="text-color-gray text-weight-4" style="padding: 0 25px 0 25px;">
+                        <a href="{{ post.url | prepend: site.baseurl }}">
+                            <div class="row" style="padding:0;">
+                                <div class="col-xs-9 text-align-left">
+                                    {{ post.title }}
+                                </div>
+                                <div class="col-xs-3 text-align-right" style="padding-left: 0;">
+                                    {{ post.date | date: "%m-%d" }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
 
-                                {% endif %}
+                    {% endif %}
 
-                            {% endfor %}
-                        {% endif %} {% endfor %}
-                    {% endif %} {% endfor %}
+                {% endfor %}
 
                 </div>
             </div>
@@ -59,49 +55,45 @@
             <div class="col-sm-6">
                 <div class="col-sm-12 col-md-10 col-md-offset-1" style="padding: 0 0 70px 0;">
                     
-                    {% for category in site.categories %} {% if category contains "qt" %}
-                        {% for posts in category %} {% if forloop.last == true %}
-                            {% for post in posts limit:6 %}
+                {% for post in site.categories.qt limit:6 %}
 
-                                {% if forloop.first == true %}
+                    {% if forloop.first == true %}
 
-                                    <div class="full-width youtube rounded">
-                                        <iframe src="https://www.youtube.com/embed/{{ post.youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                    </div>
-                                    <a href="{{ post.url | prepend: site.baseurl }}">
-                                        <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin: 30px 15px 0px 15px; height: 50px; line-height: 1.1;">
-                                            {{ post.date | date: "%m.%d" }} | {{ post.title }}
-                                        </div>
-                                    </a>
-                                    <div class="row" style="padding: 30px 30px 10px 20px;">
-                                        <div class="col-xs-7 text-size-middle text-weight-6 text-align-left">
-                                            아침말씀묵상
-                                        </div>
-                                        <div class="col-xs-5 text-size-tiny text-align-right text-weight-6 text-color-gray">
-                                            <a href="">+ 더보기</a>
-                                        </div>
-                                    </div>
-                                    
-                                {% else %}
+                    <div class="full-width youtube rounded">
+                        <iframe src="https://www.youtube.com/embed/{{ post.youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <a href="{{ post.url | prepend: site.baseurl }}">
+                        <div class="text-size-large text-align-left text-weight-6 text-color-black" style="margin: 30px 15px 0px 15px; height: 50px; line-height: 1.1;">
+                            {{ post.date | date: "%m.%d" }} | {{ post.title }}
+                        </div>
+                    </a>
+                    <div class="row" style="padding: 30px 30px 10px 20px;">
+                        <div class="col-xs-7 text-size-middle text-weight-6 text-align-left">
+                            아침말씀묵상
+                        </div>
+                        <div class="col-xs-5 text-size-tiny text-align-right text-weight-6 text-color-gray">
+                            <a href="">+ 더보기</a>
+                        </div>
+                    </div>
+                    
+                    {% else %}
 
-                                    <div class="text-color-gray text-weight-4" style="padding: 0 25px 0 25px;">
-                                        <a href="{{ post.url | prepend: site.baseurl }}">
-                                            <div class="row" style="padding:0;">
-                                                <div class="col-xs-9 text-align-left">
-                                                    {{ post.title }}
-                                                </div>
-                                                <div class="col-xs-3 text-align-right" style="padding-left: 0;">
-                                                    {{ post.date | date: "%m-%d" }}
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                    <div class="text-color-gray text-weight-4" style="padding: 0 25px 0 25px;">
+                        <a href="{{ post.url | prepend: site.baseurl }}">
+                            <div class="row" style="padding:0;">
+                                <div class="col-xs-9 text-align-left">
+                                    {{ post.title }}
+                                </div>
+                                <div class="col-xs-3 text-align-right" style="padding-left: 0;">
+                                    {{ post.date | date: "%m-%d" }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
 
-                                {% endif %}
+                    {% endif %}
 
-                            {% endfor %}
-                        {% endif %} {% endfor %}
-                    {% endif %} {% endfor %}
+                {% endfor %}
 
                 </div>
             </div>

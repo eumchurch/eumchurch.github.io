@@ -121,7 +121,6 @@ body {
 .text-size-big { font-size: 25px; }
 .text-size-large { font-size: 22px; }
 .text-size-middle { font-size: 19px; }
-.text-size-middle { font-size: 19px; }
 .text-size-small { font-size: 15px; }
 .text-size-tiny { font-size: 14px; }
 
@@ -143,7 +142,6 @@ body {
     color: white;
   } 
 }
-.text-color-black { color: $theme-black; }
 .text-color-black { color: $theme-black; }
 .text-color-darkgray { color: $theme-darkgray; }
 .text-color-gray { color: $theme-gray; }
@@ -582,6 +580,9 @@ body {
       }
     }
   }
+  .flex-list-subtitle {
+    padding: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -680,6 +681,9 @@ body {
     width: 0;
     height: 160px;
     border-left: 1px solid #cdcdcd;
+  }
+  .flex-list-subtitle {
+    padding: 4px 0 0 15px;
   }
 }
 

@@ -26,11 +26,10 @@ layout: default
 <article>
     <div id="post" class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-10" style="margin-bottom: 100px;">
+            <div class="col-xs-12 col-md-10" style="padding: 0;">
 				{{ content }}
 
-                <hr class="light margin">
-		    
+		        <!--
                 <ul class="pager">
                     {% if page.previous.url %}
                     <li class="previous">
@@ -43,16 +42,21 @@ layout: default
                     </li>
                     {% endif %}
                 </ul>
-
+                -->
             </div>
         </div>
     </div>
 </article>
 
+<div class="container">
+    <hr class="light margin">
+</div>
+
 {% if site.disqus_account %}
 
 <article>
   <div id="disqus" class="container">
+
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
