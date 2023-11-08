@@ -3,15 +3,15 @@ layout: post
 title: "주일설교"
 ---
 <div class="container-fluid index">
-
-    <h2 class="header" itemprop="headline">모든 게시글</h2>
   
     {% for post in site.categories.sermon %}
+        {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+        {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+
         {% if forloop.first %}
 
     <div class="col-md-12 content-panel articles">
-        <h2 id="{{ this_year }}-ref">{{ this_year }}</h2>
-        <!-- <ul style="list-style: none;"> -->
+        <h2 id="{{ this_year }}-ref" style="padding-bottom: 20px;">{{ this_year }}</h2>
 
         {% endif %}
 
