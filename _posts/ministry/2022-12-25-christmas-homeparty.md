@@ -2,7 +2,7 @@
 layout:     post
 title:      "크리스마스 홈파티"
 date:       2022-12-25
-header-img: "img/posts/IMG_9253.JPG"
+thumbnail: "/img/posts/IMG_9253.JPG"
 category: 	ministry
 ---
 

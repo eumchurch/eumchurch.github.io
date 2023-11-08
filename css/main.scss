@@ -191,43 +191,34 @@ body {
       rgba(255, 255, 255, 1) 5%
     );
 }
-
 .full {
   width: 100%;
   height: 100%;
 }
-
 .full-height {
   height: 100%;
 }
-
 .full-width {
   width: 100%;
 }
-
 .middle {
   display: flex;
   align-items: center;
 }
-
 .remains {
   flex: 1;
 }
-
 .text-narrow {
   line-height: 1.25;
 }
-
 .circle {
   background: radial-gradient( ellipse, #dbdbdb, #dbdbdb, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) );
 }
-
 .row {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .rounded-button {
   padding-left: 0;
   padding-right: 0;
@@ -239,39 +230,32 @@ body {
   display: flex;
   position: relative;
 }
-
 .rounded {
   border-radius: 20px;
 }
-
 .content-box {
   position: relative;
 }
-
 .bold-content {
   margin-top: 2px;
   font-weight: 500;
   margin-left: 15px;
 }
-
 .light-content {
   margin-top: 2px;
   font-weight: 200;
   position: absolute;
   right: 15px;
 }
-
 .icon-content {
   position: absolute;
   right: 1px;
 }
-
 .icon {
   width: 25px;
   height: 25px;
 
 }
-
 .vision {
   padding: 0;
   .icon-box {
@@ -316,7 +300,6 @@ body {
     }
   }
 }
-
 .relative-main-logo {
   position: relative;
   width: 100%;
@@ -337,7 +320,6 @@ body {
     left: 0;
   }
 }
-
 .youtube {
   position: relative;
   width: 100%;
@@ -353,7 +335,6 @@ body {
     top: 0;
   }
 }
-
 .custom-nav {
     > li {
         list-style-type: none;
@@ -380,11 +361,9 @@ body {
         }
     }
 }
-
 .vision-container {
   margin-left: 4.17%;
 }
-
 .news-scrollcontrol {
   position: absolute;
   width: 64px; 
@@ -397,7 +376,6 @@ body {
     padding-top: 75px;
   }
 }
-
 .left {
   background:
     linear-gradient(
@@ -406,7 +384,6 @@ body {
       transparent
     );
 }
-
 .right {
   background:
     linear-gradient(
@@ -415,7 +392,6 @@ body {
       white 40%
     );
 }
-
 .news-scrollview {
   text-align:left;
   padding: 0;
@@ -462,9 +438,29 @@ body {
 .news-scrollview::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
-
 .wide-enter {
   display: none;
+}
+.flex-list-subtitle {
+  padding: 4px 0 0 15px;
+}
+.flex-img-list-item {
+  .thumbnail {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.26%;
+    padding-left: 0;
+    >img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      object-fit:cover;
+    }
+  }
 }
 
 @media (max-width: 767px) {
@@ -685,9 +681,6 @@ body {
     width: 0;
     height: 160px;
     border-left: 1px solid #cdcdcd;
-  }
-  .flex-list-subtitle {
-    padding: 4px 0 0 15px;
   }
 }
 
