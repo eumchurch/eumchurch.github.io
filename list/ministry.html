@@ -12,33 +12,39 @@ title: "사역과 소식"
 
     <div class="col-md-12 content-panel articles">
         <h2 id="{{ this_year }}-ref" style="padding-bottom: 20px;">{{ this_year }}</h2>
+        
+        <div class="flex-list">
 
         {% endif %}
 
-        <div class="text-color-gray text-weight-3 flex-img-list-item" style="padding: 0 0 10px 0;">
-            <a href="{{ post.url | prepend: site.baseurl }}">
-                <div class="thumbnail rounded">
-                    <img src={{ post.thumbnail }}>
-                </div>
-                <div class="row">
-                    <div class="flex-sm-container col-xs-9 text-align-left">
-                        <div class="text-size-middle text-weight-4 text-color-darkgray">{{ post.title }}</div>
-                        <div class="text-size-small text-weight-3 flex-list-subtitle">{{ post.date | date: "%m-%d" }}</div>
+            <div class="text-color-gray text-weight-3 flex-img-list-item">
+                <a href="{{ post.url | prepend: site.baseurl }}">
+                    <div class="thumbnail">
+                        <img src={{ post.thumbnail }}>
                     </div>
-                </div>
-            </a>
-        </div>
+                    <div class="textbox col-xs-9 text-align-left">
+                        <div class="text-size-middle text-weight-4 text-color-darkgray">{{ post.title }}</div>
+                        <div class="text-size-small text-weight-3">{{ post.date | date: "%Y년 %-m월 %d일" }}</div>
+                    </div>
+                </a>
+            </div>
 
         {% if forloop.last %}
 
+        </div>
     </div>
 
         {% else %}
 
             {% if this_year != next_year %}
+            
+        </div>
     </div>
+
     <div class="col-md-12 content-panel articles">
         <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
+
+        <div class="flex-list">
 
             {% endif %}
 
