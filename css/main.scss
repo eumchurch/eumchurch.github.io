@@ -464,11 +464,19 @@ body {
     .textbox {
       display: flex;
       flex-direction: column;
+      padding: 30px 20px 0 20px;
+      width: 100%;
+      .title {
+        padding: 0;
+      }
+      .date {
+        padding: 0;
+      }
     }
   }
 }
 .flex-list {
-  padding: 20px;
+  padding: 0 20px 0 20px;
 }
 
 @media (max-width: 767px) {
@@ -594,8 +602,10 @@ body {
   .flex-list {
     margin: auto;
     max-width: 500px;
+    padding: 0;
   }
   .flex-img-list-item {
+    padding-bottom: 20px;
     >a {
       display: flex;
       flex-direction: column;
@@ -605,6 +615,7 @@ body {
         height: 0;
         padding-bottom: 56.26%;
         padding-left: 0;
+        margin-bottom: 0;
         >img {
           position: absolute;
           width: 100%;
@@ -615,6 +626,11 @@ body {
       }
       .textbox {
         flex-direction: row;
+        padding: 0;
+        .date {
+          text-align: right;
+          padding-top: 3px;
+        }
       }
     }
   }

@@ -22,9 +22,9 @@ title: "사역과 소식"
                     <div class="thumbnail">
                         <img src={{ post.thumbnail }}>
                     </div>
-                    <div class="textbox col-xs-9 text-align-left">
-                        <div class="text-size-middle text-weight-4 text-color-darkgray">{{ post.title }}</div>
-                        <div class="text-size-small text-weight-3">{{ post.date | date: "%Y년 %-m월 %d일" }}</div>
+                    <div class="textbox text-align-left">
+                        <div class="col-xs-9 title text-size-middle text-weight-4 text-color-darkgray">{{ post.title }}</div>
+                        <div class="col-xs-3 date text-size-small text-weight-3">{{ post.date | date: "%-m월 %e일" }}</div>
                     </div>
                 </a>
             </div>
