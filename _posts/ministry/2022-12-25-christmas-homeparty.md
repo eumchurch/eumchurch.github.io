@@ -4,6 +4,7 @@ title:      "크리스마스 홈파티"
 date:       2022-12-25
 thumbnail: "/img/posts/IMG_9253.JPG"
 category: 	ministry
+author:		"H"
 ---
 
 크리스마스 홈파티를 했습니다!
