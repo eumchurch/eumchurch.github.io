@@ -82,12 +82,16 @@ hr {
     border-color: $theme-darkgray;
 }
 hr.heavy {
-    width: 100%;
     border-color: $theme-darkgray;
 }
 hr.light {
-    width: 80%;
     border-color: #cdcdcd;
+}
+hr.width-8 {
+  width: 80%;
+}
+hr.width-10 {
+  width: 100%;
 }
 hr.margin {
     margin-top: 50px;
