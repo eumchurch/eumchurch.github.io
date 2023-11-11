@@ -13,7 +13,7 @@
                 
                 <div class="news-container">
                 
-                {% for post in site.categories.ministry %}
+                {% for post in site.categories.ministry limit:10 %}
                 
                     <div>
                         <a href="{{ post.url | prepend: site.baseurl }}">
@@ -32,7 +32,7 @@
                     </div>
 
                 {% endfor %}
-
+                <!--
                     <div>
                         <a href="/list/ministry/">
                             <div class="news-item">
@@ -42,7 +42,7 @@
                             </div>
                         </a>
                     </div>
-
+                -->
                 </div>
             </div>
 

@@ -67,11 +67,11 @@ a:visited {
   text-decoration: none;
 }
 a:hover {
-  color: $theme-green;
+  color: $theme-blue;
   text-decoration: none;
 }
 a:active {
-  color: $theme-green;
+  color: $theme-blue;
   text-decoration: none;
 }
 
@@ -283,10 +283,10 @@ body {
       color: $theme-gray;
     }
     > a:hover {
-      color: $theme-green;
+      color: $theme-blue;
     }
     > a:active {
-      color: $theme-green;
+      color: $theme-blue;
     }
     .title {
       position: absolute;
@@ -374,6 +374,7 @@ body {
   height: 320px; 
   top: 0px; 
   .scrollbutton {
+    display: none;
     border-width: 0; 
     background-color: transparent; 
     padding: 0;
