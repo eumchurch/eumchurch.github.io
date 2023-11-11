@@ -22,6 +22,14 @@ title: "아침 말씀 묵상"
                 </div>
                 <div class="col-xs-3 text-align-right" style="padding-left: 0;">
                     {{ post.date | date: "%m-%d" }}
+                    {% capture day %}{{ post.date | date: "%w" }}{% endcapture %}
+                    {% case day %}
+                        {% when "1" %} 월
+                        {% when "2" %} 화
+                        {% when "3" %} 수
+                        {% when "4" %} 목
+                        {% when "5" %} 금
+                    {% endcase %}
                 </div>
             </div>
         </a>
