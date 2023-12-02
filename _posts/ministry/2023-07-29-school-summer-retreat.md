@@ -2,7 +2,7 @@
 layout:     post
 title:      "여름 성경학교 캠프"
 date:       2023-07-29
-thumbnail: "/img/posts/IMG_8587.jpg"
+thumbnail: "/img/posts/2023-07-29-school-summer-retreat-01.jpg"
 category: 	ministry
 author:		"H"
 ---
@@ -19,6 +19,8 @@ author:		"H"
 햇볕이 많이 뜨겁고 더운 날이다보니 얼른 바다에 들어가고 싶었는데요,
 역시나 바닷물 속은 너무나 시원해서 다들 얼굴에 웃음이 떠나질 않았답니다.
 모래놀이도 하고, 조개도 잡고, 튜브를 타고 파도에 몸을 맡기기도 하며 즐거운 물놀이를 즐겼습니다.
+
+<img src="/img/posts/2023-07-29-school-summer-retreat-02.jpg" style="width: 100%">
 
 신나게 물놀이를 한 뒤 숙소로 돌아가 개운하게 씻고
 맛있는 바비큐파티를 즐겼습니다!

@@ -2,7 +2,7 @@
 layout:     post
 title:      "크리스마스 홈파티"
 date:       2022-12-25
-thumbnail: "/img/posts/IMG_9253.JPG"
+thumbnail:	"/img/posts/2022-12-25-christmas-homeparty-01.jpg"
 category: 	ministry
 author:		"H"
 ---
@@ -20,6 +20,8 @@ author:		"H"
 한국의 고유 음식인 호박전, 산적, 동태전을 포함한
 맛있는 저녁 식사를 대접하는 것으로 파티는 시작되었습니다.
 
+<img src="/img/posts/2022-12-25-christmas-homeparty-03.jpg" style="width: 100%">
+
 식사가 끝나갈 때 쯤 피아노, 바이올린, 클라리넷 3중주로
 캐롤과 예수님 탄생을 축하하는 찬양 등을 하나님께 올려드렸습니다.
 이어서 이음교회가 이 곳 신촌에 스며들어 그리스도의 향기를 잔잔히 전하고 있음을
@@ -31,6 +33,8 @@ author:		"H"
 간단하지만 귀여운 키링을 만들어 홈파티를 기념할 수 있었는데요,
 이 글을 쓰고 있는 지금까지도 제 책상의 귀여움을 담당하고 있답니다.
 (거의 1년 후 적고 있는 이 글,, 허허)
+
+<img src="/img/posts/2022-12-25-christmas-homeparty-02.jpg" style="width: 100%">
 
 예수님이 이 땅에 오시며 우리와 함께 하셨듯, 우리도 이웃과 함께하기 위해 준비한
 크리스마스 홈파티!

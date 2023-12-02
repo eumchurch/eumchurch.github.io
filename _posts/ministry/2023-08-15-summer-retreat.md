@@ -2,7 +2,7 @@
 layout:     post
 title:      "전교인 수련회"
 date:       2023-08-15
-thumbnail: "/img/posts/IMG_8587.jpg"
+thumbnail: "/img/posts/2023-08-15-summer-retreat-01.jpg"
 category: 	ministry
 author:		"H"
 ---
@@ -35,6 +35,8 @@ author:		"H"
 여름 수련회에서 빠질 수 없는 것, 해수욕장 물놀이!
 4개의 팀을 나누고 모래찜질, 공튀기기, 이어말하기 등 다양한 게임을 즐기며 신나는 물놀이를 진행했습니다.
 숙소로 돌아와 잠시 휴식을 취한 후 맛있는 저녁밥을 든든하게 먹었습니다.
+
+<img src="/img/posts/2023-08-15-summer-retreat-01.jpg" style="width: 100%">
 
 2박3일 일정의 마지막 밤이었던 둘째날 저녁집회는 특별히 서로를 축복하는 시간이 있었는데요,
 서로의 얼굴만 봐도 눈물버튼이었던, 잊지 못할 사랑 가득한 시간이었습니다.

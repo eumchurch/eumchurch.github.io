@@ -3,7 +3,7 @@ layout:     post
 title:      "English fellowship cafe"
 date:       2023-07-06
 thumbnail: "/img/posts/IMG_0262.jpg"
-category: 	ministry
+category: 	temp
 ---
 
 English fellowship cafe
