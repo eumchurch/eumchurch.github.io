@@ -14,6 +14,11 @@ layout: default
                 <span class="meta text-size-small text-family-scoredream text-weight-2">
                     {{ page.date | date: "%B %-d, %Y" }}<br/>
                 </span>
+                {% if page.author %}
+                    <span class="meta text-size-middle text-family-scoredream text-weight-2 text-family-dancing">
+                        editor {{ page.author }}<br/>
+                    </span>
+                {% endif %}
                 <!-- <a href="#post" class="page-scroll"><i class="fa fa-fw fa-2x fa-arrow-down"></i></a> -->
             </div>
         </div>

@@ -4,7 +4,7 @@ title:      "여름 성경학교 캠프"
 date:       2023-07-29
 thumbnail: "/img/posts/2023-07-29-school-summer-retreat-01.jpg"
 category: 	ministry
-author:		"H"
+author:		"H."
 ---
 
 지난 7월, 이음교회의 주일학교 학생과 교사, 그리고 학부모는 강원도 양양으로 향했습니다.

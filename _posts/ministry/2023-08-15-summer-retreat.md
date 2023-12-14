@@ -4,7 +4,7 @@ title:      "전교인 수련회"
 date:       2023-08-15
 thumbnail: "/img/posts/2023-08-15-summer-retreat-01.jpg"
 category: 	ministry
-author:		"H"
+author:		"H."
 ---
 
 2023년 8월 둘째 주,

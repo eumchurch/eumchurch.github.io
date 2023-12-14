@@ -4,7 +4,7 @@ title:      "크리스마스 홈파티"
 date:       2022-12-25
 thumbnail:	"/img/posts/2022-12-25-christmas-homeparty-01.jpg"
 category: 	ministry
-author:		"H"
+author:		"H."
 ---
 
 2022년 12월, 우리의 첫 번째 에피소드_Friends를 소개합니다!
