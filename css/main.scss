@@ -451,7 +451,7 @@ body {
   display: none;
 }
 .flex-list-subtitle {
-  padding: 4px 0 0 15px;
+  padding: 0 0 0 15px;
 }
 .flex-img-list-item {
   >a {
@@ -486,6 +486,27 @@ body {
 }
 .flex-list {
   padding: 0 20px 0 20px;
+}
+.go-youtube {
+  padding-top: 40px;
+  .middle {
+    width: 170px;
+    margin: 0 auto;
+    > a {
+      .box {
+        display: flex;
+        flex-direction: row;
+        > img {
+          width:80px;
+          height: 19px;
+          margin-top: 3px;
+        }
+        > div {
+          padding-left: 4px;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 767px) {
@@ -606,7 +627,7 @@ body {
     }
   }
   .flex-list-subtitle {
-    padding: 0;
+    padding: 0 0 5px 15px;
   }
   .flex-list {
     margin: auto;
