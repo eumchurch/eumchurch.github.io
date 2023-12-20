@@ -11,6 +11,7 @@ title: "아침 말씀 묵상"
     {% if forloop.first %}
 
     <h2 id="{{ this_year }}-ref" style="padding-bottom: 20px;">{{ this_year }}</h2>
+    {% capture latest_youtube %}{{ post.youtube }}{% endcapture %}
 
     {% endif %}
 
@@ -50,7 +51,7 @@ title: "아침 말씀 묵상"
 
 <div class="go-youtube">
     <div class="middle">
-        <a href="https://www.youtube.com/watch?v=0O6yHPuARgk&list=PLzCVCPy03Qq2itb1HzvL5CV-TwTCRfFRA&pp=iAQB" target="_blank">
+        <a href="https://www.youtube.com/watch?v={{ latest_youtube }}&list=PLzCVCPy03Qq2itb1HzvL5CV-TwTCRfFRA&pp=iAQB" target="_blank">
             <div class="box">
                 <img src="/img/icon/youtube.png">
                 <div class="text-size-small text-color-darkgray text-weight-4">에서 더 보기</div>
