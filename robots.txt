@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://2eumchurch.com/Sitemap.xml

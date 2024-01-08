@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	
+
+	<!-- 게시판 -->
+  
+
+  <url>
+		<loc>https://2eumchurch.com/list/sermon/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/list/daily-qt/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/list/ministry/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+  </url> 
+  
+
+  <!-- 게시글 -->
+
+
+  <url>
+		<loc>https://2eumchurch.com/introduction/2020/01/12/introduction/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+  </url>  
+  <url>
+		<loc>https://2eumchurch.com/introduction/2020/01/12/visions/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>yearly</changefreq>
+		<priority>0.8</priority>
+  </url>
+
+
+  <!-- 주일설교 -->
+
+
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/12/31/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/12/24/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/12/17/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/12/10/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/12/03/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/11/26/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/11/19/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/11/12/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/11/05/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/10/29/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/10/22/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/10/15/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/10/08/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/10/01/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/09/24/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/09/17/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/09/10/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/09/03/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/08/27/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+  <url>
+		<loc>https://2eumchurch.com/sermon/2023/08/20/</loc>
+		<lastmod>2024-01-08T16:00:00+09:00</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+  </url>
+</urlset>
