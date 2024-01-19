@@ -11,6 +11,12 @@ html 및 md 파일 상단에 layout, date, category, title, subtitle 혹은 새�
 https://jekynewage.github.io/  
 https://github.com/jekynewage/jekynewage.github.io  
 
+### Layouts
+[/_layouts/](https://github.com/eumchurch/eumchurch.github.io/tree/main/_layouts)  
+[front](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/front.html) - 메인페이지 레이아웃  
+[default](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/default.html) - 포스트 및 목록의 레이아웃  
+[post](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/post.html) - 포스트 및 목록의 레이아웃 -> [default](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/default.html)를 통해 노출  
+  
 ## 폴더 및 파일
 랜딩페이지 [/_layouts/front.html](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/front.html) -> [/index.html](https://github.com/eumchurch/eumchurch.github.io/blob/main/index.html)를 통해 노출, 컨텐츠 내용은 [_includes](https://github.com/eumchurch/eumchurch.github.io/tree/main/_includes) 안에 있다.  
 레이아웃 [/_layouts/](https://github.com/eumchurch/eumchurch.github.io/tree/main/_layouts)  
@@ -23,12 +29,6 @@ font css [/font-awesome/css/](https://github.com/eumchurch/eumchurch.github.io/t
 사역 목록 [/list/ministry.html](https://github.com/eumchurch/eumchurch.github.io/blob/main/list/ministry.html)  
 주보 목록 [/list/bulletin.html](https://github.com/eumchurch/eumchurch.github.io/blob/main/list/bulletin.html) 주보는 현재 미노출  
 
-### Layouts
-[/_layouts/](https://github.com/eumchurch/eumchurch.github.io/tree/main/_layouts)  
-[front](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/front.html) - 메인페이지 레이아웃  
-[default](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/default.html) - 포스트 및 목록의 레이아웃  
-[post](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/post.html) - 포스트 및 목록의 레이아웃 -> [default](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/default.html)를 통해 노출  
-  
 
 # 랜딩페이지 상세
 [/_layouts/front.html](https://github.com/eumchurch/eumchurch.github.io/blob/main/_layouts/front.html)  
