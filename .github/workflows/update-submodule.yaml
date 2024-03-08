@@ -1,4 +1,4 @@
-name: "Import notion pages"
+name: "Update submodule"
 on:
   push
   # repository_dispatch:
@@ -24,17 +24,6 @@ jobs:
       - name: Update Submodule
         run: |
           git submodule update --remote
-      
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - run: npm install
-
-      - run: node notion-import.js
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          DATABASE_ID: ${{ secrets.DATABASE_ID }}
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         env:
