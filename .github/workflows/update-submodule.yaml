@@ -1,8 +1,7 @@
 name: "Update submodule"
 on:
-  push
-  # repository_dispatch:
-  #   types: [RUN_WORKFLOW_DISPATCH]
+  repository_dispatch:
+    types: [RUN_WORKFLOW_DISPATCH]
       
 permissions:
   contents: write
@@ -26,7 +25,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           submodules: true
     
       - name: Update Submodule
