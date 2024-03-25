@@ -510,6 +510,11 @@ body {
   }
 }
 
+.caption {
+  font-size: $text-size-tiny;
+  color: $dark-gray;
+}
+
 @media (max-width: 767px) {
   .text-size-header { font-size: 50px; }
   .front-content-top {
