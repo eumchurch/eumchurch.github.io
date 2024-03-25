@@ -511,8 +511,8 @@ body {
 }
 
 .caption {
-  font-size: $text-size-tiny;
-  color: $dark-gray;
+  font-size: 14px;
+  color: $theme-darkgray;
 }
 
 @media (max-width: 767px) {
