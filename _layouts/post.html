@@ -8,8 +8,12 @@
   <!-- og thumbnail -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://2eumchurch.org{{page.url}}">
-  <meta property="og:title" content="{{ page.author }}">
+  <meta property="og:title" content="{{ page.title }}">
+  
+  {% if page.subtitle %}
   <meta property="og:description" content="{{ page.subtitle }}">
+  {% endif %}
+
   {% if page.thumbnail %}
   <meta property="og:image" content="https://2eumchurch.org{{ page.thumbnail }}">
   {% else %}
