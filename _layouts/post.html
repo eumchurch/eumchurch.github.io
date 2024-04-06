@@ -1,49 +1,71 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="ko">
 
-<!-- Post Header -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-10">
-            <div class="post-heading text-align-center" style="padding-top: 150px;">
-                <span class="text-size-huge text-family-scoredream text-weight-4">{{ page.title }}</span><br/>
-                {% if page.subtitle %}
-                    <span class="text-size-big text-family-scoredream text-weight-3">{{ page.subtitle }}</span><br/><br/>
-                {% endif %}
-                <span class="meta text-size-small text-family-scoredream text-weight-2">
-                    {{ page.date | date: "%Y년 %-m월 %-d일" }}<br/>
-                </span>
-                {% if page.author %}
-                    <span class="meta text-size-middle text-family-scoredream text-weight-2 text-family-dancing">
-                        editor {{ page.author }}<br/>
+<head>
+ 
+  {% include head.html %}
+  
+  <!-- og thumbnail -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://2eumchurch.org{{page.url}}">
+  <meta property="og:title" content="{{ page.author }}">
+  <meta property="og:image" content="https://2eumchurch.org{{ page.thumbnail }}">
+  <meta property="og:description" content="{{ page.subtitle }}">
+
+</head>
+
+<body id="page-top">
+  {% include nav-main.html %}
+
+    <!-- Post Header -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-10">
+                <div class="post-heading text-align-center" style="padding-top: 150px;">
+                    <span class="text-size-huge text-family-scoredream text-weight-4">{{ page.title }}</span><br/>
+                    {% if page.subtitle %}
+                        <span class="text-size-big text-family-scoredream text-weight-3">{{ page.subtitle }}</span><br/><br/>
+                    {% endif %}
+                    <span class="meta text-size-small text-family-scoredream text-weight-2">
+                        {{ page.date | date: "%Y년 %-m월 %-d일" }}<br/>
                     </span>
-                {% endif %}
-                <!-- <a href="#post" class="page-scroll"><i class="fa fa-fw fa-2x fa-arrow-down"></i></a> -->
+                    {% if page.author %}
+                        <span class="meta text-size-middle text-family-scoredream text-weight-2 text-family-dancing">
+                            editor {{ page.author }}<br/>
+                        </span>
+                    {% endif %}
+                    <!-- <a href="#post" class="page-scroll"><i class="fa fa-fw fa-2x fa-arrow-down"></i></a> -->
+                </div>
             </div>
         </div>
-    </div>
-    
-</div>
-
-<!-- Post Content -->
-<article>
-    <div id="post" class="container">
         
-        <div class="row">
-            <div class="col-xs-12 col-md-10" style="padding: 0;">
-                <div class="container-fluid index">
-                    <div class="col-md-12 content-panel articles">
-                        
-                        <hr class="light width-10 margin">
+    </div>
 
-                        {{ content }}
+    <!-- Post Content -->
+    <article>
+        <div id="post" class="container">
+            
+            <div class="row">
+                <div class="col-xs-12 col-md-10" style="padding: 0;">
+                    <div class="container-fluid index">
+                        <div class="col-md-12 content-panel articles">
+                            
+                            <hr class="light width-10 margin">
 
-                        <hr class="light width-10 margin">
+                            {{ content }}
 
+                            <hr class="light width-10 margin">
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</article>
+    </article>
+
+    {% include scripts.html %}
+
+</body>
+
+</html>
+
