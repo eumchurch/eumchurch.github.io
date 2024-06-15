@@ -16,13 +16,10 @@ title: "주보"
 
     <div class="text-color-gray text-weight-3" style="padding: 0 0 5px 0;">
         <a href="{{ post.url | prepend: site.baseurl }}">
-            <div class="row">
-                <div class="col-xs-9 text-align-left text-size-middle text-weight-4 text-color-darkgray">
+            <div class="row text-align-left text-size-middle text-weight-4 text-color-darkgray">
+<!--                 <div class="col-xs-9 text-align-left text-size-middle text-weight-4 text-color-darkgray"> -->
                     {{ post.title }}
-                </div>
-                <div class="col-xs-3 text-align-right" style="padding-left: 0;">
-                    {{ post.date | date: "%m-%d" }}
-                </div>
+<!--                 </div> -->
             </div>
         </a>
     </div>
