@@ -57,6 +57,14 @@
   });
   var marker = new naver.maps.Marker({
       position: new naver.maps.LatLng(lat, lng),
-      map: map
+      map: map,
+      title: '이음교회'
+  });
+
+  const smartPlaceUrl = "https://naver.me/5EUqypqG"; // 실제 URL로 바꿔야 함
+
+  // 마커 클릭 이벤트
+  naver.maps.Event.addListener(marker, 'click', function() {
+    window.open(smartPlaceUrl, '_blank'); // 새 탭으로 열기
   });
 </script>
