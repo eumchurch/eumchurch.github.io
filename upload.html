@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주보 업로더</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        .date-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .date-inputs input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .date-inputs span {
+            font-weight: bold;
+            color: #666;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed #ddd;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .github-config {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .config-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .help-text {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 주보 업로더</h1>
+        
+        <form id="bulletinForm">
+            <div class="github-config">
+                <div class="config-title">GitHub 설정</div>
+                <div class="form-group">
+                    <label for="githubToken">GitHub Personal Access Token:</label>
+                    <input type="password" id="githubToken" required>
+                    <div class="help-text">GitHub Settings > Developer settings > Personal access tokens에서 생성</div>
+                </div>
+                <div class="form-group">
+                    <label for="repoOwner">Repository 소유자:</label>
+                    <input type="text" id="repoOwner" placeholder="예: myusername" required>
+                </div>
+                <div class="form-group">
+                    <label for="repoName">Repository 이름:</label>
+                    <input type="text" id="repoName" placeholder="예: my-blog" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>날짜:</label>
+                <div class="date-inputs">
+                    <input type="number" id="year" placeholder="2025" min="2020" max="2030" required>
+                    <span>년</span>
+                    <input type="number" id="month" placeholder="8" min="1" max="12" required>
+                    <span>월</span>
+                    <input type="number" id="day" placeholder="31" min="1" max="31" required>
+                    <span>일</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="image1">첫 번째 이미지:</label>
+                <input type="file" id="image1" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="image2">두 번째 이미지:</label>
+                <input type="file" id="image2" accept="image/*" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                주보 업로드하기
+            </button>
+        </form>
+
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('bulletinForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const status = document.getElementById('status');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '업로드 중...';
+            showStatus('업로드를 시작합니다...', 'loading');
+
+            try {
+                const year = document.getElementById('year').value;
+                const month = document.getElementById('month').value.padStart(2, '0');
+                const day = document.getElementById('day').value.padStart(2, '0');
+                const dateStr = `${year}-${month}-${day}`;
+                
+                const token = document.getElementById('githubToken').value;
+                const owner = document.getElementById('repoOwner').value;
+                const repo = document.getElementById('repoName').value;
+                
+                const image1 = document.getElementById('image1').files[0];
+                const image2 = document.getElementById('image2').files[0];
+
+                if (!image1 || !image2) {
+                    throw new Error('두 개의 이미지를 모두 선택해주세요.');
+                }
+
+                // GitHub API 헤더
+                const headers = {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                };
+
+                // 이미지를 Base64로 변환하는 함수
+                const fileToBase64 = (file) => {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result.split(',')[1]);
+                        reader.onerror = error => reject(error);
+                    });
+                };
+
+                showStatus('이미지를 처리하고 있습니다...', 'loading');
+
+                // 이미지들을 Base64로 변환
+                const image1Base64 = await fileToBase64(image1);
+                const image2Base64 = await fileToBase64(image2);
+
+                showStatus('GitHub에 이미지를 업로드하고 있습니다...', 'loading');
+
+                // 첫 번째 이미지 업로드
+                await uploadFile(
+                    headers, owner, repo,
+                    `images/bulletin/${dateStr}/1.png`,
+                    image1Base64,
+                    `Add bulletin image 1 for ${dateStr}`
+                );
+
+                // 두 번째 이미지 업로드
+                await uploadFile(
+                    headers, owner, repo,
+                    `images/bulletin/${dateStr}/2.png`,
+                    image2Base64,
+                    `Add bulletin image 2 for ${dateStr}`
+                );
+
+                showStatus('마크다운 파일을 생성하고 있습니다...', 'loading');
+
+                // 마크다운 파일 내용 생성
+                const markdownContent = `---
+layout: post
+date: ${dateStr}
+category: "bulletin"
+title: "${year}년 ${parseInt(month)}월 ${parseInt(day)}일 주보"
+---
+
+<img src="/posts/images/${dateStr}-bulletin/1.png" style="width: 100%">
+
+
+---
+
+
+<img src="/posts/images/${dateStr}-bulletin/2.png" style="width: 100%">`;
+
+                // 마크다운 파일을 Base64로 인코딩
+                const markdownBase64 = btoa(unescape(encodeURIComponent(markdownContent)));
+
+                // 마크다운 파일 업로드
+                await uploadFile(
+                    headers, owner, repo,
+                    `_posts/bulletin/${dateStr}-bulletin.md`,
+                    markdownBase64,
+                    `Add bulletin post for ${dateStr}`
+                );
+
+                showStatus(`✅ 성공적으로 업로드되었습니다! (${dateStr})`, 'success');
+                document.getElementById('bulletinForm').reset();
+
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus(`❌ 오류: ${error.message}`, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '주보 업로드하기';
+            }
+        });
+
+        async function uploadFile(headers, owner, repo, path, content, message) {
+            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+            
+            // 파일이 이미 존재하는지 확인
+            let sha = null;
+            try {
+                const existingFile = await fetch(url, { headers });
+                if (existingFile.ok) {
+                    const fileData = await existingFile.json();
+                    sha = fileData.sha;
+                }
+            } catch (e) {
+                // 파일이 존재하지 않으면 무시
+            }
+
+            const body = {
+                message: message,
+                content: content
+            };
+            
+            if (sha) {
+                body.sha = sha; // 기존 파일을 덮어쓰기 위한 SHA
+            }
+
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: headers,
+                body: JSON.stringify(body)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`GitHub API 오류: ${errorData.message || response.statusText}`);
+            }
+
+            return response.json();
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
+
+        // 날짜 유효성 검사
+        document.getElementById('year').addEventListener('input', validateDate);
+        document.getElementById('month').addEventListener('input', validateDate);
+        document.getElementById('day').addEventListener('input', validateDate);
+
+        function validateDate() {
+            const year = parseInt(document.getElementById('year').value);
+            const month = parseInt(document.getElementById('month').value);
+            const day = parseInt(document.getElementById('day').value);
+
+            if (year && month && day) {
+                const date = new Date(year, month - 1, day);
+                if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+                    showStatus('유효하지 않은 날짜입니다.', 'error');
+                } else {
+                    document.getElementById('status').style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
