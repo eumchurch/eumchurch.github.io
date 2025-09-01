@@ -217,7 +217,7 @@ layout: null
                 // 첫 번째 이미지 업로드
                 await uploadFile(
                     headers, owner, repo,
-                    `images/bulletin/${dateStr}/1.png`,
+                    `img/posts/bulletin/${dateStr}/1.png`,
                     image1Base64,
                     `Add bulletin image 1 for ${dateStr}`
                 );
@@ -225,7 +225,7 @@ layout: null
                 // 두 번째 이미지 업로드
                 await uploadFile(
                     headers, owner, repo,
-                    `images/bulletin/${dateStr}/2.png`,
+                    `img/posts/bulletin/${dateStr}/2.png`,
                     image2Base64,
                     `Add bulletin image 2 for ${dateStr}`
                 );
@@ -240,13 +240,13 @@ category: "bulletin"
 title: "${year}년 ${parseInt(month)}월 ${parseInt(day)}일 주보"
 ---
 
-<img src="/posts/images/${dateStr}-bulletin/1.png" style="width: 100%">
+<img src="/img/posts/bulletin/${dateStr}-bulletin/1.png" style="width: 100%">
 
 
 ---
 
 
-<img src="/posts/images/${dateStr}-bulletin/2.png" style="width: 100%">`;
+<img src="/img/posts/bulletin/${dateStr}-bulletin/2.png" style="width: 100%">`;
 
                 // 마크다운 파일을 Base64로 인코딩
                 const markdownBase64 = btoa(unescape(encodeURIComponent(markdownContent)));
