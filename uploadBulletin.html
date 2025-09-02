@@ -130,6 +130,15 @@ layout: null
     <div class="container">
         <h1>📋 주보 업로더</h1>
         
+        <div class="github-config">
+            <div class="config-title">GitHub Personal Access Token</div>
+            <div class="form-group">
+                <label for="githubToken">토큰 입력:</label>
+                <input type="password" id="githubToken" required>
+                <div class="help-text">Repository dispatch 권한이 있는 토큰이 필요합니다</div>
+            </div>
+        </div>
+        
         <form id="bulletinForm">
             <div class="form-group">
                 <label>날짜:</label>
@@ -179,7 +188,7 @@ layout: null
             
             submitBtn.disabled = true;
             submitBtn.textContent = '업로드 중...';
-            showStatus('업로드를 시작합니다...', 'loading');
+            showStatus('GitHub Actions 워크플로를 시작합니다...', 'loading');
 
             try {
                 const year = document.getElementById('year').value;
@@ -187,7 +196,7 @@ layout: null
                 const day = document.getElementById('day').value.padStart(2, '0');
                 const dateStr = `${year}-${month}-${day}`;
                 
-                const token = "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";
+                const token = document.getElementById('githubToken').value;
                 const owner = "eumchurch";
                 const repo = "posts";
                 
@@ -198,12 +207,9 @@ layout: null
                     throw new Error('두 개의 이미지를 모두 선택해주세요.');
                 }
 
-                // GitHub API 헤더
-                const headers = {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                };
+                if (!token) {
+                    throw new Error('GitHub 토큰을 입력해주세요.');
+                }
 
                 // 이미지를 Base64로 변환하는 함수
                 const fileToBase64 = (file) => {
@@ -221,55 +227,43 @@ layout: null
                 const image1Base64 = await fileToBase64(image1);
                 const image2Base64 = await fileToBase64(image2);
 
-                showStatus('GitHub에 이미지를 업로드하고 있습니다...', 'loading');
+                showStatus('GitHub Actions 워크플로를 트리거하고 있습니다...', 'loading');
 
-                // 첫 번째 이미지 업로드
-                await uploadFile(
-                    headers, owner, repo,
-                    `images/bulletin/${dateStr}/1.png`,
-                    image1Base64,
-                    `Add bulletin image 1 for ${dateStr}`
-                );
+                // GitHub Actions workflow dispatch 트리거
+                const workflowResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/dispatches`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        event_type: 'upload_bulletin',
+                        client_payload: {
+                            date: dateStr,
+                            year: year,
+                            month: parseInt(month),
+                            day: parseInt(day),
+                            image1: image1Base64,
+                            image2: image2Base64
+                        }
+                    })
+                });
 
-                // 두 번째 이미지 업로드
-                await uploadFile(
-                    headers, owner, repo,
-                    `images/bulletin/${dateStr}/2.png`,
-                    image2Base64,
-                    `Add bulletin image 2 for ${dateStr}`
-                );
+                if (!workflowResponse.ok) {
+                    const errorData = await workflowResponse.text();
+                    throw new Error(`GitHub API 오류: ${workflowResponse.status} ${workflowResponse.statusText}`);
+                }
 
-                showStatus('마크다운 파일을 생성하고 있습니다...', 'loading');
-
-                // 마크다운 파일 내용 생성
-                const markdownContent = `---
-layout: post
-date: ${dateStr}
-category: "bulletin"
-title: "${year}년 ${parseInt(month)}월 ${parseInt(day)}일 주보"
----
-
-<img src="/images/bulletin/${dateStr}-bulletin/1.png" style="width: 100%">
-
-
----
-
-
-<img src="/images/bulletin/${dateStr}-bulletin/2.png" style="width: 100%">`;
-
-                // 마크다운 파일을 Base64로 인코딩
-                const markdownBase64 = btoa(unescape(encodeURIComponent(markdownContent)));
-
-                // 마크다운 파일 업로드
-                await uploadFile(
-                    headers, owner, repo,
-                    `_posts/bulletin/${dateStr}.md`,
-                    markdownBase64,
-                    `Add bulletin post for ${dateStr}`
-                );
-
-                showStatus(`✅ 성공적으로 업로드되었습니다! (${dateStr})`, 'success');
+                showStatus(`✅ 성공적으로 업로드 요청을 보냈습니다! (${dateStr}) GitHub Actions에서 처리 중입니다.`, 'success');
                 document.getElementById('bulletinForm').reset();
+                
+                // 날짜를 다시 오늘로 설정
+                const now = new Date();
+                const koreaTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Seoul"}));
+                document.getElementById('year').value = koreaTime.getFullYear();
+                document.getElementById('month').value = koreaTime.getMonth() + 1;
+                document.getElementById('day').value = koreaTime.getDate();
 
             } catch (error) {
                 console.error('Error:', error);
@@ -279,44 +273,6 @@ title: "${year}년 ${parseInt(month)}월 ${parseInt(day)}일 주보"
                 submitBtn.textContent = '주보 업로드하기';
             }
         });
-
-        async function uploadFile(headers, owner, repo, path, content, message) {
-            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-            
-            // 파일이 이미 존재하는지 확인
-            let sha = null;
-            try {
-                const existingFile = await fetch(url, { headers });
-                if (existingFile.ok) {
-                    const fileData = await existingFile.json();
-                    sha = fileData.sha;
-                }
-            } catch (e) {
-                // 파일이 존재하지 않으면 무시
-            }
-
-            const body = {
-                message: message,
-                content: content
-            };
-            
-            if (sha) {
-                body.sha = sha; // 기존 파일을 덮어쓰기 위한 SHA
-            }
-
-            const response = await fetch(url, {
-                method: 'PUT',
-                headers: headers,
-                body: JSON.stringify(body)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`GitHub API 오류: ${errorData.message || response.statusText}`);
-            }
-
-            return response.json();
-        }
 
         function showStatus(message, type) {
             const status = document.getElementById('status');
