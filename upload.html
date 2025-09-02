@@ -180,7 +180,7 @@ layout: null
                 
                 const token = "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";
                 const owner = "eumchurch";
-                const repo = "eumchurch.github.io";
+                const repo = "posts";
                 
                 const image1 = document.getElementById('image1').files[0];
                 const image2 = document.getElementById('image2').files[0];
@@ -217,7 +217,7 @@ layout: null
                 // 첫 번째 이미지 업로드
                 await uploadFile(
                     headers, owner, repo,
-                    `img/posts/bulletin/${dateStr}/1.png`,
+                    `images/bulletin/${dateStr}/1.png`,
                     image1Base64,
                     `Add bulletin image 1 for ${dateStr}`
                 );
@@ -225,7 +225,7 @@ layout: null
                 // 두 번째 이미지 업로드
                 await uploadFile(
                     headers, owner, repo,
-                    `img/posts/bulletin/${dateStr}/2.png`,
+                    `images/bulletin/${dateStr}/2.png`,
                     image2Base64,
                     `Add bulletin image 2 for ${dateStr}`
                 );
@@ -240,13 +240,13 @@ category: "bulletin"
 title: "${year}년 ${parseInt(month)}월 ${parseInt(day)}일 주보"
 ---
 
-<img src="/img/posts/bulletin/${dateStr}-bulletin/1.png" style="width: 100%">
+<img src="/images/bulletin/${dateStr}-bulletin/1.png" style="width: 100%">
 
 
 ---
 
 
-<img src="/img/posts/bulletin/${dateStr}-bulletin/2.png" style="width: 100%">`;
+<img src="/images/bulletin/${dateStr}-bulletin/2.png" style="width: 100%">`;
 
                 // 마크다운 파일을 Base64로 인코딩
                 const markdownBase64 = btoa(unescape(encodeURIComponent(markdownContent)));
@@ -254,7 +254,7 @@ title: "${year}년 ${parseInt(month)}월 ${parseInt(day)}일 주보"
                 // 마크다운 파일 업로드
                 await uploadFile(
                     headers, owner, repo,
-                    `_posts/bulletin/${dateStr}-bulletin.md`,
+                    `_posts/bulletin/${dateStr}.md`,
                     markdownBase64,
                     `Add bulletin post for ${dateStr}`
                 );
