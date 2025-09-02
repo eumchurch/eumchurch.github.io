@@ -68,7 +68,7 @@ layout: null
             box-sizing: border-box;
         }
         .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 50%, #00a65a 100%);
             color: white;
             padding: 15px 30px;
             border: none;
@@ -162,6 +162,15 @@ layout: null
     </div>
 
     <script>
+        window.addEventListener('load', function() {
+            const now = new Date();
+            const koreaTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Seoul"}));
+            
+            document.getElementById('year').value = koreaTime.getFullYear();
+            document.getElementById('month').value = koreaTime.getMonth() + 1;
+            document.getElementById('day').value = koreaTime.getDate();
+        });
+        
         document.getElementById('bulletinForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
