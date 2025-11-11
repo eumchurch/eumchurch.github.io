@@ -1,0 +1,52 @@
+name: "Import notion pages"
+on:
+  repository_dispatch:
+    types: [RUN_WORKFLOW_DISPATCH]
+      
+permissions:
+  contents: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  importer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+    
+      - name: Clean Directory
+        run: |
+          rm -rf _posts/introduction/*
+          rm -rf _posts/ministry/*
+          rm -rf img/posts/*
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm install
+
+      - run: node .github/workflows/notion-import.js
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit_message: "[배포] Notion 변경 사항 저장"
+          branch: main
+          commit_user_name: notion-bot 🤖
+          commit_user_email: kmj4138@gmail.com
+          commit_author: notion-bot 🤖 <kmj4138@gmail.com>
+
+      - name: Update submodule in original repo
+        run: |
+          curl -fL --retry 3 -X POST -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" -H "Authorization: Bearer ${{ secrets.ACTION_TOKEN }}" https://api.github.com/repos/eumchurch/eumchurch.github.io/dispatches -d '{"event_type": "RUN_WORKFLOW_DISPATCH"}'
+ 

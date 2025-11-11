@@ -1,0 +1,57 @@
+name: Upload Bulletin
+
+on:
+  repository_dispatch:
+    types: [upload_bulletin]
+
+jobs:
+  upload-bulletin:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.ACTION_TOKEN }}
+        
+    - name: Create bulletin files
+      run: |
+        # 변수 설정
+        DATE="${{ github.event.client_payload.date }}"
+        YEAR="${{ github.event.client_payload.year }}"
+        MONTH="${{ github.event.client_payload.month }}"
+        DAY="${{ github.event.client_payload.day }}"
+        
+        # 디렉토리 생성
+        mkdir -p "images/bulletin/${DATE}"
+        mkdir -p "_posts/bulletin"
+        
+        # 이미지 파일 생성 (Base64에서 디코딩)
+        echo "${{ github.event.client_payload.image1 }}" | base64 -d > "images/bulletin/${DATE}/1.png"
+        echo "${{ github.event.client_payload.image2 }}" | base64 -d > "images/bulletin/${DATE}/2.png"
+        
+        # 마크다운 파일 생성
+        cat > "_posts/bulletin/${DATE}.md" << EOF
+        ---
+        layout: post
+        date: ${DATE}
+        category: "bulletin"
+        title: "${YEAR}년 ${MONTH}월 ${DAY}일 주보"
+        ---
+        
+        <img src="/images/bulletin/${DATE}/1.png" style="width: 100%">
+        
+        
+        ---
+        
+        
+        <img src="/images/bulletin/${DATE}/2.png" style="width: 100%">
+        EOF
+        
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Add bulletin for ${{ github.event.client_payload.date }}" || exit 0
+        git push

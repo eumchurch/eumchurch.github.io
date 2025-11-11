@@ -1,0 +1,45 @@
+name: "Import youtube"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 3 * * 1,2,3,4,5'
+      
+permissions:
+  contents: write
+  id-token: write
+
+# Allow one concurrent deployment
+jobs:
+  importer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+    
+      - name: Clean Directory
+        run: |
+          rm -rf _posts/sermon/*
+          rm -rf _posts/qt/*
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm install
+
+      - run: node .github/workflows/youtube-import.js
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit_message: "[배포] Youtube 변경 사항 저장"
+          branch: main
+          commit_user_name: youtube-bot 🤖
+          commit_user_email: kmj4138@gmail.com
+          commit_author: youtube-bot 🤖 <kmj4138@gmail.com>
