@@ -84,10 +84,11 @@ async function checkSermons() {
   };
   const queryString = new URLSearchParams(params).toString();
   const requrl = `${searchUrl}?${queryString}`;
-
+  console.log(requrl);
   const res = await fetch(requrl);
   const data = await res.json();
   let items = data?.["items"];
+  console.log(items);
   if (items) {
     let firstItem = items[0];
     if (firstItem) {
