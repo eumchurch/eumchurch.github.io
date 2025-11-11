@@ -88,10 +88,12 @@ async function checkSermons() {
   const res = await fetch(requrl);
   const data = await res.json();
   let items = data?.["items"];
-  console.log(items);
+  console.log('1');
   if (items) {
+    console.log('2');
     let firstItem = items[0];
     if (firstItem) {
+      console.log('3');
       let firstVideoId = firstItem?.["id"]?.["videoId"];
       console.log(firstVideoId);
     }
