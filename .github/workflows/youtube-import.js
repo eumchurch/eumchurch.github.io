@@ -86,7 +86,9 @@ async function checkSermons() {
   const requrl = `${searchUrl}?${queryString}`;
   console.log(requrl);
   const res = await fetch(requrl);
+  console.log(res);
   const data = await res.json();
+  console.log(data);
   let items = data?.["items"];
   console.log('1');
   if (items) {
