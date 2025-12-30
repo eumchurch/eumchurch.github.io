@@ -138,9 +138,9 @@ function getSermons() {
             }
           } else {
             // throw new Error("An error occured parsing youtube sermon description; " + description);
-            let mediaTitle = smippet?.["title"];
+            let mediaTitle = snippet?.["title"];
             const m = mediaTitle.match(/\(([^)]+)\)/);
-            if (!m) throw new Error("An error occured parsing youtube sermon title; " + mediaTitle + "\n" + description);
+            if (!m) throw new Error("An error occured parsing youtube sermon title; " + snippet);
           
             const inside = m[1].trim();
           
