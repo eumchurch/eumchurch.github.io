@@ -146,14 +146,10 @@ function getSermons() {
           
             // 마지막 쉼표(,) 기준으로 title/subtitle 분리 (subtitle에 쉼표가 더 있을 수도 있으니 lastIndexOf 사용)
             const idx = inside.lastIndexOf(",");
-            if (idx === -1) return null;
-          
             title = inside.slice(0, idx).trim();
             subtitle = inside.slice(idx + 1).trim();
           
             if (!title || !subtitle) throw new Error("An error occured parsing youtube sermon title and subtitle; " + mediaTitle + "\n" + description);
-          
-            return { title, subtitle };
           }
 
           createFile(date, title, subtitle, category, youtube, description);
