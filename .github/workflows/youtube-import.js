@@ -137,7 +137,19 @@ function getSermons() {
               description += (string.replaceAll("\n", "\n\n") + "\n\n");
             }
           } else {
-            throw new Error("An error occured parsing youtube sermon description; " + description);
+            // throw new Error("An error occured parsing youtube sermon description; " + description);
+            let mediaTitle = snippet?.["title"];
+            const m = mediaTitle.match(/\(([^)]+)\)/);
+            if (!m) throw new Error("An error occured parsing youtube sermon title; " + snippet);
+          
+            const inside = m[1].trim();
+          
+            // 마지막 쉼표(,) 기준으로 title/subtitle 분리 (subtitle에 쉼표가 더 있을 수도 있으니 lastIndexOf 사용)
+            const idx = inside.lastIndexOf(",");
+            title = inside.slice(0, idx).trim();
+            subtitle = inside.slice(idx + 1).trim();
+          
+            if (!title || !subtitle) throw new Error("An error occured parsing youtube sermon title and subtitle; " + mediaTitle + "\n" + description);
           }
 
           createFile(date, title, subtitle, category, youtube, description);
