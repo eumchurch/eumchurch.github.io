@@ -18,40 +18,72 @@ const QT_PLAYLISTS = [
   "PLzCVCPy03Qq3Xafno_2tZP5fWfqH1x_0r", // 2026
 ];
 
+// 한국어 성경 책 이름 (긴 이름 우선 — 정규식 alternation에서 부분 일치 방지)
+const BIBLE_BOOKS = [
+  // 전체 이름
+  '데살로니가전서', '데살로니가후서', '예레미야애가',
+  '고린도전서', '고린도후서', '갈라디아서', '빌레몬서',
+  '디모데전서', '디모데후서', '베드로전서', '베드로후서',
+  '요한계시록', '야고보서', '히브리서', '에베소서', '빌립보서', '골로새서',
+  '요한일서', '요한이서', '요한삼서',
+  '요한복음', '마태복음', '마가복음', '누가복음', '사도행전',
+  '예레미야', '사무엘상', '사무엘하', '열왕기상', '열왕기하',
+  '역대상', '역대하', '느헤미야', '출애굽기', '전도서',
+  '창세기', '레위기', '민수기', '신명기', '여호수아', '사사기',
+  '에스더', '에스라', '이사야', '에스겔', '다니엘', '호세아',
+  '하박국', '스바냐', '스가랴', '말라기', '로마서', '유다서', '디도서',
+  '욥기', '시편', '잠언', '아가', '요엘', '아모스', '오바댜', '요나',
+  '미가', '나훔', '학개', '룻기',
+  // 약어 (긴 것 우선)
+  '살전', '살후', '삼상', '삼하', '왕상', '왕하', '대상', '대하',
+  '고전', '고후', '딤전', '딤후', '벧전', '벧후', '요일', '요이', '요삼',
+  '창', '출', '레', '민', '신', '수', '삿', '룻', '스', '느', '에',
+  '욥', '시', '잠', '전', '아', '사', '렘', '애', '겔', '단', '호',
+  '욜', '암', '옵', '욘', '미', '나', '합', '습', '학', '슥', '말',
+  '마', '막', '눅', '요', '행', '롬', '갈', '엡', '빌', '골', '몬',
+  '히', '약', '유', '계',
+];
+
+// 성경 구절 정규식
+// 커버 범위:
+//   마태복음 11장 / 시편 118편          (절 없음)
+//   로마서 12:1                          (단일 절)
+//   로마서 12:1-8                        (절 범위)
+//   로마서 12:1-12:10                    (장:절 범위)
+//   로마서 12:1 - 12:10                  (범위 사이 공백)
+//   로마서 12:1~12:10                    (~ 사용)
+//   로마서12:1                           (띄어쓰기 없음)
+const BIBLE_PATTERN = new RegExp(
+  `(${BIBLE_BOOKS.join('|')})` +
+  `\\s*\\d+\\s*(?:장|편)?` +
+  `(?:\\s*:\\s*\\d+(?:\\s*[-~]\\s*(?:\\d+:\\d+|\\d+))?)?`
+);
+
+function findBibleRef(text) {
+  if (!text) return null;
+  const m = BIBLE_PATTERN.exec(text);
+  return m ? m[0].trim() : null;
+}
+
 function convertPostDate(publishedAt, needsSunday) {
-  let publishedDate = new Date(publishedAt);
-  let publishedKST = new Date(publishedDate.getTime() + TIMEZONE_OFFSET);
+  let publishedKST = new Date(new Date(publishedAt).getTime() + TIMEZONE_OFFSET);
   if (needsSunday) {
     publishedKST = new Date(publishedKST.getTime() - publishedKST.getDay() * A_DAY_OFFSET);
   }
-
-  let year = publishedKST.getFullYear();
-  let month = publishedKST.getMonth() + 1;
-  if (month < 10) month = "0" + month;
-  let date = publishedKST.getDate();
-  if (date < 10) date = "0" + date;
-  return year + "-" + month + "-" + date;
+  const year = publishedKST.getFullYear();
+  const month = String(publishedKST.getMonth() + 1).padStart(2, '0');
+  const date = String(publishedKST.getDate()).padStart(2, '0');
+  return `${year}-${month}-${date}`;
 }
 
 function parseDateFromTitle(title) {
-  // 연도 포함: "2023년 3월 15일"
-  const matchFull = title.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
-  if (matchFull) {
-    const year = matchFull[1];
-    const month = matchFull[2].padStart(2, '0');
-    const day = matchFull[3].padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-
-  // 연도 없음: "3월 15일" → 현재 연도 사용
-  const matchShort = title.match(/(\d{1,2})월\s*(\d{1,2})일/);
-  if (matchShort) {
+  const full = title.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+  if (full) return `${full[1]}-${full[2].padStart(2,'0')}-${full[3].padStart(2,'0')}`;
+  const short = title.match(/(\d{1,2})월\s*(\d{1,2})일/);
+  if (short) {
     const year = new Date().getFullYear();
-    const month = matchShort[1].padStart(2, '0');
-    const day = matchShort[2].padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return `${year}-${short[1].padStart(2,'0')}-${short[2].padStart(2,'0')}`;
   }
-
   return null;
 }
 
@@ -70,32 +102,24 @@ youtube: "${youtube}"
 </div>
 
 `;
-
-  fs.writeFileSync(path.join("_posts/" + category, date + "-" + category + ".md"), fm + contents);
+  fs.writeFileSync(
+    path.join("_posts/" + category, date + "-" + category + ".md"),
+    fm + contents
+  );
 }
 
 async function fetchAllItems(playlistId) {
   let items = [];
   let pageToken = null;
-
   do {
-    const params = {
-      key: GOOGLE_API_KEY,
-      playlistId: playlistId,
-      maxResults: 50,
-      part: "snippet",
-    };
+    const params = { key: GOOGLE_API_KEY, playlistId, maxResults: 50, part: "snippet" };
     if (pageToken) params.pageToken = pageToken;
-
-    const queryString = new URLSearchParams(params).toString();
-    const res = await fetch(`${playlistItemsUrl}?${queryString}`);
+    const res = await fetch(`${playlistItemsUrl}?${new URLSearchParams(params)}`);
     const data = await res.json();
-
-    if (data.error) throw new Error(`API error for playlist ${playlistId}: ${JSON.stringify(data.error)}`);
+    if (data.error) throw new Error(`API error [${playlistId}]: ${JSON.stringify(data.error)}`);
     if (data.items) items = items.concat(data.items);
     pageToken = data.nextPageToken || null;
   } while (pageToken);
-
   return items;
 }
 
@@ -117,34 +141,46 @@ async function getSermons() {
       const desc = snippet?.["description"] || "";
       const mediaTitle = snippet?.["title"] || "";
 
-      if (!publishedAt) throw new Error("publishedAt missing for sermon: " + mediaTitle);
+      if (!publishedAt) throw new Error("publishedAt missing: " + mediaTitle);
       const date = convertPostDate(publishedAt, true);
 
       let title = "";
       let subtitle = "";
       let description = "";
 
-      const array = desc.split("\n\n");
-      if (array.length >= 3) {
-        title = array[1];
-        subtitle = array[0];
-        for (let i = 2; i < array.length; i++) {
-          description += array[i].replaceAll("\n", "\n\n") + "\n\n";
+      const parts = desc.split("\n\n").map(p => p.trim()).filter(p => p);
+
+      // description 앞 3개 파트에서 성경구절 찾기
+      let bibleIdx = -1;
+      for (let i = 0; i < Math.min(parts.length, 3); i++) {
+        if (findBibleRef(parts[i])) { bibleIdx = i; break; }
+      }
+
+      if (bibleIdx !== -1) {
+        // title: 성경구절 파트에서 추출
+        title = findBibleRef(parts[bibleIdx]);
+        // subtitle: 성경구절이 아닌 다른 파트
+        for (let i = 0; i < Math.min(parts.length, 3); i++) {
+          if (i !== bibleIdx && parts[i]) { subtitle = parts[i]; break; }
+        }
+        // 본문: 3번째 파트 이후
+        if (parts.length > 2) {
+          description = parts.slice(2).map(p => p.replaceAll("\n", "\n\n")).join("\n\n") + "\n\n";
         }
       } else {
-        const m = mediaTitle.match(/\(([^)]+)\)/);
-        if (m) {
-          const inside = m[1].trim();
-          const idx = inside.lastIndexOf(",");
-          if (idx !== -1) {
-            title = inside.slice(0, idx).trim();
-            subtitle = inside.slice(idx + 1).trim();
-          } else {
-            title = inside;
-          }
+        // description에 없으면 mediaTitle에서 성경구절 찾기
+        title = findBibleRef(desc) || findBibleRef(mediaTitle) || "";
+
+        // subtitle: mediaTitle 괄호 안에서 성경구절이 아닌 부분
+        for (const pm of mediaTitle.matchAll(/\(([^)]+)\)/g)) {
+          const inner = pm[1].trim();
+          if (!findBibleRef(inner) && inner) { subtitle = inner; break; }
         }
-        // 괄호 파싱 실패 또는 결과가 없으면 영상 제목을 그대로 사용
-        if (!title) title = mediaTitle;
+
+        // description 전체를 본문으로
+        if (parts.length > 0) {
+          description = parts.map(p => p.replaceAll("\n", "\n\n")).join("\n\n") + "\n\n";
+        }
       }
 
       createFile(date, title, subtitle, category, youtube, description);
@@ -170,8 +206,9 @@ async function getQts() {
 
       const publishedAt = snippet?.["publishedAt"];
       const youtube = snippet?.["resourceId"]?.["videoId"];
+      const desc = snippet?.["description"] || "";
 
-      // 날짜: publishedAt 우선, 없으면 제목에서 파싱
+      // 날짜: publishedAt 우선, 없으면 제목 파싱
       let date = "";
       if (publishedAt) {
         date = convertPostDate(publishedAt, false);
@@ -180,13 +217,15 @@ async function getQts() {
         if (!date) throw new Error("Failed to parse QT date: " + mediaTitle);
       }
 
-      // 제목: 괄호 안에서 추출, 괄호 없으면 영상 제목 그대로 사용
-      let title = "";
-      const parts = mediaTitle.split("(");
-      if (parts.length >= 2) {
-        title = parts[parts.length - 1].split(")")[0];
+      // title: description에서 먼저, 없으면 mediaTitle 괄호 안, 없으면 mediaTitle 전체에서
+      let title = findBibleRef(desc) || "";
+      if (!title) {
+        for (const pm of mediaTitle.matchAll(/\(([^)]+)\)/g)) {
+          const ref = findBibleRef(pm[1]);
+          if (ref) { title = ref; break; }
+        }
       }
-      if (!title) title = mediaTitle;
+      if (!title) title = findBibleRef(mediaTitle) || "";
 
       createFile(date, title, "", category, youtube, "");
     }
