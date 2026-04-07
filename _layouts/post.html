@@ -6,14 +6,16 @@
   {% include head.html %}
   
   <!-- og thumbnail -->
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:url" content="https://2eumchurch.org{{page.url}}">
+  <meta property="og:site_name" content="이음교회">
   <meta property="og:title" content="{{ page.title }}">
-  
+  <meta property="og:locale" content="ko_KR">
+
   {% if page.subtitle %}
   <meta property="og:description" content="{{ page.subtitle }}">
   {% else %}
-  <meta property="og:description" content="하나님나라와 세상을 잇는 이음교회">
+  <meta property="og:description" content="하나님나라와 세상을 잇는 이음교회, 대한예수교장로회">
   {% endif %}
 
   {% if page.thumbnail %}

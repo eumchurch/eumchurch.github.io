@@ -4,7 +4,7 @@ email:
 # description: A jekyll template for landing pages, portfolio and blogging
 
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
-url: "https://eumchurch.github.io" # the base hostname & protocol for your site
+url: "https://2eumchurch.org" # the base hostname & protocol for your site
 
 #Google Ad Words Data from scripts code (using Google responsive options) and ad client
 data-ad-slot: 
@@ -33,5 +33,5 @@ permalink: pretty
 paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
-gems: [jekyll-paginate, jekyll-feed]
+plugins: [jekyll-paginate, jekyll-feed, jekyll-sitemap]
 # Build settings
