@@ -180,16 +180,13 @@ async function getQts() {
         if (!date) throw new Error("Failed to parse QT date: " + mediaTitle);
       }
 
-      // 제목: 괄호 안에서 추출 (기존 로직 유지)
+      // 제목: 괄호 안에서 추출, 괄호 없으면 영상 제목 그대로 사용
       let title = "";
       const parts = mediaTitle.split("(");
-      if (parts.length == 2) {
-        title = parts[1].split(")")[0];
-      } else if (parts.length >= 3) {
+      if (parts.length >= 2) {
         title = parts[parts.length - 1].split(")")[0];
-      } else {
-        throw new Error("Failed to parse QT title: " + mediaTitle);
       }
+      if (!title) title = mediaTitle;
 
       createFile(date, title, "", category, youtube, "");
     }
