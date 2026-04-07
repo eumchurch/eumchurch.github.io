@@ -133,12 +133,18 @@ async function getSermons() {
         }
       } else {
         const m = mediaTitle.match(/\(([^)]+)\)/);
-        if (!m) throw new Error("Failed to parse sermon title: " + mediaTitle);
-        const inside = m[1].trim();
-        const idx = inside.lastIndexOf(",");
-        title = inside.slice(0, idx).trim();
-        subtitle = inside.slice(idx + 1).trim();
-        if (!title || !subtitle) throw new Error("Failed to parse sermon title/subtitle: " + mediaTitle);
+        if (m) {
+          const inside = m[1].trim();
+          const idx = inside.lastIndexOf(",");
+          if (idx !== -1) {
+            title = inside.slice(0, idx).trim();
+            subtitle = inside.slice(idx + 1).trim();
+          } else {
+            title = inside;
+          }
+        }
+        // 괄호 파싱 실패 또는 결과가 없으면 영상 제목을 그대로 사용
+        if (!title) title = mediaTitle;
       }
 
       createFile(date, title, subtitle, category, youtube, description);
