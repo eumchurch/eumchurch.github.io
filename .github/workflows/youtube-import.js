@@ -92,6 +92,7 @@ function parseDateFromTitle(title, publishedAt) {
 }
 
 function createFile(date, title, subtitle, category, youtube, contents) {
+  const [year, month, day] = date.split("-");
   const fm = `---
 layout: post
 date: ${date}
@@ -99,6 +100,7 @@ title: "${title}"
 category: "${category}"
 subtitle: "${subtitle}"
 youtube: "${youtube}"
+permalink: /${category}/${year}${month}${day}/
 ---
 
 <div class="youtube margin-large">
@@ -107,7 +109,7 @@ youtube: "${youtube}"
 
 `;
   fs.writeFileSync(
-    path.join("_posts/" + category, date + ".md"),
+    path.join("_posts/" + category, date + "-" + category + ".md"),
     fm + contents
   );
 }
