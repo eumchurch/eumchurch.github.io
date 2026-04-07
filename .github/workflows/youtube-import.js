@@ -76,14 +76,18 @@ function convertPostDate(publishedAt, needsSunday) {
   return `${year}-${month}-${date}`;
 }
 
-function parseDateFromTitle(title) {
+function getYearKST(publishedAt) {
+  return new Date(new Date(publishedAt).getTime() + TIMEZONE_OFFSET).getFullYear();
+}
+
+// 제목에서 월/일 추출, 연도는 publishedAt 기준으로 사용
+// publishedAt이 없으면 현재 연도 사용
+function parseDateFromTitle(title, publishedAt) {
+  const year = publishedAt ? getYearKST(publishedAt) : new Date().getFullYear();
   const full = title.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
   if (full) return `${full[1]}-${full[2].padStart(2,'0')}-${full[3].padStart(2,'0')}`;
   const short = title.match(/(\d{1,2})월\s*(\d{1,2})일/);
-  if (short) {
-    const year = new Date().getFullYear();
-    return `${year}-${short[1].padStart(2,'0')}-${short[2].padStart(2,'0')}`;
-  }
+  if (short) return `${year}-${short[1].padStart(2,'0')}-${short[2].padStart(2,'0')}`;
   return null;
 }
 
@@ -112,7 +116,7 @@ async function fetchAllItems(playlistId) {
   let items = [];
   let pageToken = null;
   do {
-    const params = { key: GOOGLE_API_KEY, playlistId, maxResults: 50, part: "snippet" };
+    const params = { key: GOOGLE_API_KEY, playlistId, maxResults: 50, part: "snippet,status" };
     if (pageToken) params.pageToken = pageToken;
     const res = await fetch(`${playlistItemsUrl}?${new URLSearchParams(params)}`);
     const data = await res.json();
@@ -133,6 +137,8 @@ async function getSermons() {
     console.log(`  ${items.length} items found`);
 
     for (const item of items) {
+      if (item?.["status"]?.["privacyStatus"] !== "public") continue;
+
       const snippet = item?.["snippet"];
       if (!snippet) continue;
 
@@ -141,8 +147,10 @@ async function getSermons() {
       const desc = snippet?.["description"] || "";
       const mediaTitle = snippet?.["title"] || "";
 
-      if (!publishedAt) throw new Error("publishedAt missing: " + mediaTitle);
-      const date = convertPostDate(publishedAt, true);
+      // 날짜: 제목에서 월/일 추출(연도는 publishedAt 기준), 없으면 publishedAt으로 일요일 보정
+      const date = parseDateFromTitle(mediaTitle, publishedAt)
+        ?? (publishedAt ? convertPostDate(publishedAt, true) : null);
+      if (!date) throw new Error("date missing: " + mediaTitle);
 
       let title = "";
       let subtitle = "";
@@ -198,24 +206,20 @@ async function getQts() {
     console.log(`  ${items.length} items found`);
 
     for (const item of items) {
+      if (item?.["status"]?.["privacyStatus"] !== "public") continue;
+
       const snippet = item?.["snippet"];
       if (!snippet) continue;
 
-      const mediaTitle = snippet?.["title"] || "";
-      if (mediaTitle === "Private video") continue;
-
       const publishedAt = snippet?.["publishedAt"];
       const youtube = snippet?.["resourceId"]?.["videoId"];
+      const mediaTitle = snippet?.["title"] || "";
       const desc = snippet?.["description"] || "";
 
-      // 날짜: publishedAt 우선, 없으면 제목 파싱
-      let date = "";
-      if (publishedAt) {
-        date = convertPostDate(publishedAt, false);
-      } else {
-        date = parseDateFromTitle(mediaTitle);
-        if (!date) throw new Error("Failed to parse QT date: " + mediaTitle);
-      }
+      // 날짜: 제목에서 월/일 추출(연도는 publishedAt 기준), 없으면 publishedAt 사용
+      const date = parseDateFromTitle(mediaTitle, publishedAt)
+        ?? (publishedAt ? convertPostDate(publishedAt, false) : null);
+      if (!date) throw new Error("Failed to parse QT date: " + mediaTitle);
 
       // title: description에서 먼저, 없으면 mediaTitle 괄호 안, 없으면 mediaTitle 전체에서
       let title = findBibleRef(desc) || "";
