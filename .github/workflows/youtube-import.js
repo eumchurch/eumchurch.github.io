@@ -107,7 +107,7 @@ youtube: "${youtube}"
 
 `;
   fs.writeFileSync(
-    path.join("_posts/" + category, date + "-" + category + ".md"),
+    path.join("_posts/" + category, date + ".md"),
     fm + contents
   );
 }
