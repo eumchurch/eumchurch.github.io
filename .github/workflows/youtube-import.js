@@ -6,6 +6,7 @@ const playlistItemsUrl = 'https://www.googleapis.com/youtube/v3/playlistItems';
 const TIMEZONE_OFFSET = 1000 * 60 * 60 * 17;
 const A_DAY_OFFSET = 1000 * 60 * 60 * 24;
 
+// 전체 가져오기용 (초기 1회 실행 시 사용)
 const SERMON_PLAYLISTS = [
   "PLzCVCPy03Qq1ySW_mrIsXdrrDw35NBRyE", // 2020~2024
   "PLzCVCPy03Qq3HzyPBLCTU53sMtG-Da2_P", // 2025
@@ -17,6 +18,12 @@ const QT_PLAYLISTS = [
   "PLzCVCPy03Qq1UV8gBxaIj2YQ3G4-Zj_Zy", // 2025
   "PLzCVCPy03Qq3Xafno_2tZP5fWfqH1x_0r", // 2026
 ];
+
+// 정기 업데이트용: 현재 연도 재생목록만 사용
+const SERMON_PLAYLIST_CURRENT = SERMON_PLAYLISTS[SERMON_PLAYLISTS.length - 1];
+const QT_PLAYLIST_CURRENT = QT_PLAYLISTS[QT_PLAYLISTS.length - 1];
+
+const SEVEN_DAYS_AGO = new Date(Date.now() - 7 * A_DAY_OFFSET);
 
 // 한국어 성경 책 이름 (긴 이름 우선 — 정규식 alternation에서 부분 일치 방지)
 const BIBLE_BOOKS = [
@@ -114,6 +121,7 @@ permalink: /${category}/${year}${month}${day}/
   );
 }
 
+// 재생목록 전체 수집 (초기 1회용)
 async function fetchAllItems(playlistId) {
   let items = [];
   let pageToken = null;
@@ -129,13 +137,36 @@ async function fetchAllItems(playlistId) {
   return items;
 }
 
+// 최근 7일 항목만 수집 (정기 업데이트용)
+// 재생목록은 최신순 정렬이므로, 7일 초과 항목을 만나면 즉시 중단
+async function fetchRecentItems(playlistId) {
+  let items = [];
+  let pageToken = null;
+  do {
+    const params = { key: GOOGLE_API_KEY, playlistId, maxResults: 50, part: "snippet,status" };
+    if (pageToken) params.pageToken = pageToken;
+    const res = await fetch(`${playlistItemsUrl}?${new URLSearchParams(params)}`);
+    const data = await res.json();
+    if (data.error) throw new Error(`API error [${playlistId}]: ${JSON.stringify(data.error)}`);
+    let done = false;
+    for (const item of (data.items || [])) {
+      const publishedAt = item?.snippet?.publishedAt;
+      if (publishedAt && new Date(publishedAt) < SEVEN_DAYS_AGO) { done = true; break; }
+      items.push(item);
+    }
+    if (done) break;
+    pageToken = data.nextPageToken || null;
+  } while (pageToken);
+  return items;
+}
+
 async function getSermons() {
   const category = "sermon";
   fs.mkdirSync("_posts/" + category, { recursive: true });
 
-  for (const playlistId of SERMON_PLAYLISTS) {
-    console.log(`Fetching sermon playlist: ${playlistId}`);
-    const items = await fetchAllItems(playlistId);
+  for (const playlistId of [SERMON_PLAYLIST_CURRENT]) {
+    console.log(`Fetching sermon playlist (recent): ${playlistId}`);
+    const items = await fetchRecentItems(playlistId);
     console.log(`  ${items.length} items found`);
 
     for (const item of items) {
@@ -202,9 +233,9 @@ async function getQts() {
   const category = "qt";
   fs.mkdirSync("_posts/" + category, { recursive: true });
 
-  for (const playlistId of QT_PLAYLISTS) {
-    console.log(`Fetching QT playlist: ${playlistId}`);
-    const items = await fetchAllItems(playlistId);
+  for (const playlistId of [QT_PLAYLIST_CURRENT]) {
+    console.log(`Fetching QT playlist (recent): ${playlistId}`);
+    const items = await fetchRecentItems(playlistId);
     console.log(`  ${items.length} items found`);
 
     for (const item of items) {

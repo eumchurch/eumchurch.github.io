@@ -18,12 +18,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-    
-      - name: Clean Directory
-        run: |
-          rm -rf _posts/sermon/*
-          rm -rf _posts/qt/*
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
