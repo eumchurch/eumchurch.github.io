@@ -3,12 +3,20 @@ const path = require("path");
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const playlistItemsUrl = 'https://www.googleapis.com/youtube/v3/playlistItems';
-const searchUrl = 'https://www.googleapis.com/youtube/v3/search';
-const PLAYLIST_ID_SERMON = "PLzCVCPy03Qq2NcJoys243dkOL7PJtuLX1";
-const PLAYLIST_ID_QT = "PLzCVCPy03Qq3Xafno_2tZP5fWfqH1x_0r";
-const CHANNEL_ID = "UC2pp2CNwey9Yc79XcxJyHGw";
 const TIMEZONE_OFFSET = 1000 * 60 * 60 * 17;
 const A_DAY_OFFSET = 1000 * 60 * 60 * 24;
+
+const SERMON_PLAYLISTS = [
+  "PLzCVCPy03Qq1ySW_mrIsXdrrDw35NBRyE", // 2020~2024
+  "PLzCVCPy03Qq3HzyPBLCTU53sMtG-Da2_P", // 2025
+  "PLzCVCPy03Qq2NcJoys243dkOL7PJtuLX1", // 2026
+];
+
+const QT_PLAYLISTS = [
+  "PLzCVCPy03Qq2itb1HzvL5CV-TwTCRfFRA", // 2020~2024
+  "PLzCVCPy03Qq1UV8gBxaIj2YQ3G4-Zj_Zy", // 2025
+  "PLzCVCPy03Qq3Xafno_2tZP5fWfqH1x_0r", // 2026
+];
 
 function convertPostDate(publishedAt, needsSunday) {
   let publishedDate = new Date(publishedAt);
@@ -16,21 +24,38 @@ function convertPostDate(publishedAt, needsSunday) {
   if (needsSunday) {
     publishedKST = new Date(publishedKST.getTime() - publishedKST.getDay() * A_DAY_OFFSET);
   }
-  
+
   let year = publishedKST.getFullYear();
   let month = publishedKST.getMonth() + 1;
-  if (month < 10) {
-      month = "0" + month;
-  }
+  if (month < 10) month = "0" + month;
   let date = publishedKST.getDate();
-  if (date < 10) {
-      date = "0" + date;
-  }
+  if (date < 10) date = "0" + date;
   return year + "-" + month + "-" + date;
 }
 
-function createFile(date, title, subtitle, category, youtube, contents) {
+function parseDateFromTitle(title) {
+  // 연도 포함: "2023년 3월 15일"
+  const matchFull = title.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+  if (matchFull) {
+    const year = matchFull[1];
+    const month = matchFull[2].padStart(2, '0');
+    const day = matchFull[3].padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
+  // 연도 없음: "3월 15일" → 현재 연도 사용
+  const matchShort = title.match(/(\d{1,2})월\s*(\d{1,2})일/);
+  if (matchShort) {
+    const year = new Date().getFullYear();
+    const month = matchShort[1].padStart(2, '0');
+    const day = matchShort[2].padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  return null;
+}
+
+function createFile(date, title, subtitle, category, youtube, contents) {
   const fm = `---
 layout: post
 date: ${date}
@@ -46,172 +71,126 @@ youtube: "${youtube}"
 
 `;
 
-  fs.writeFile(path.join("_posts/" + category, date + "-" + category + ".md"), fm + contents, (err) => {
-    if (err) {
-      console.log(err);
-    }
-  });
+  fs.writeFileSync(path.join("_posts/" + category, date + "-" + category + ".md"), fm + contents);
 }
 
-async function callApi(playlistId, callBack) {
+async function fetchAllItems(playlistId) {
+  let items = [];
+  let pageToken = null;
 
-  const params = {
+  do {
+    const params = {
       key: GOOGLE_API_KEY,
       playlistId: playlistId,
-      maxResults: 20,
-      part: "snippet"
-  };
-  const queryString = new URLSearchParams(params).toString();  // url에 쓰기 적합한 querySting으로 return 해준다. 
-  const requrl = `${playlistItemsUrl}?${queryString}`; 
+      maxResults: 50,
+      part: "snippet",
+    };
+    if (pageToken) params.pageToken = pageToken;
 
-  const res = await fetch(requrl);
-  const data = await res.json();
+    const queryString = new URLSearchParams(params).toString();
+    const res = await fetch(`${playlistItemsUrl}?${queryString}`);
+    const data = await res.json();
 
-  let items = data?.["items"];
+    if (data.error) throw new Error(`API error for playlist ${playlistId}: ${JSON.stringify(data.error)}`);
+    if (data.items) items = items.concat(data.items);
+    pageToken = data.nextPageToken || null;
+  } while (pageToken);
 
-  callBack(items);
+  return items;
 }
 
-async function checkSermons() {
+async function getSermons() {
+  const category = "sermon";
+  fs.mkdirSync("_posts/" + category, { recursive: true });
 
-  const params = {
-    key: GOOGLE_API_KEY,
-    channelId: CHANNEL_ID,
-    q: "설교",
-    order: "date",
-    part: "snippet",
-    maxResults: 12
-  };
-  const queryString = new URLSearchParams(params).toString();
-  const requrl = `${searchUrl}?${queryString}`;
-  console.log(requrl);
-  const res = await fetch(requrl);
-  console.log(res);
-  const data = await res.json();
-  console.log(data);
-  let items = data?.["items"];
-  console.log('1');
-  if (items) {
-    console.log('2');
-    let firstItem = items[0];
-    if (firstItem) {
-      console.log('3');
-      let firstVideoId = firstItem?.["id"]?.["videoId"];
-      console.log(firstVideoId);
+  for (const playlistId of SERMON_PLAYLISTS) {
+    console.log(`Fetching sermon playlist: ${playlistId}`);
+    const items = await fetchAllItems(playlistId);
+    console.log(`  ${items.length} items found`);
+
+    for (const item of items) {
+      const snippet = item?.["snippet"];
+      if (!snippet) continue;
+
+      const publishedAt = snippet?.["publishedAt"];
+      const youtube = snippet?.["resourceId"]?.["videoId"];
+      const desc = snippet?.["description"] || "";
+      const mediaTitle = snippet?.["title"] || "";
+
+      if (!publishedAt) throw new Error("publishedAt missing for sermon: " + mediaTitle);
+      const date = convertPostDate(publishedAt, true);
+
+      let title = "";
+      let subtitle = "";
+      let description = "";
+
+      const array = desc.split("\n\n");
+      if (array.length >= 3) {
+        title = array[1];
+        subtitle = array[0];
+        for (let i = 2; i < array.length; i++) {
+          description += array[i].replaceAll("\n", "\n\n") + "\n\n";
+        }
+      } else {
+        const m = mediaTitle.match(/\(([^)]+)\)/);
+        if (!m) throw new Error("Failed to parse sermon title: " + mediaTitle);
+        const inside = m[1].trim();
+        const idx = inside.lastIndexOf(",");
+        title = inside.slice(0, idx).trim();
+        subtitle = inside.slice(idx + 1).trim();
+        if (!title || !subtitle) throw new Error("Failed to parse sermon title/subtitle: " + mediaTitle);
+      }
+
+      createFile(date, title, subtitle, category, youtube, description);
     }
   }
 }
 
-function getSermons() {
-  // 주일설교
-  let category = "sermon"
+async function getQts() {
+  const category = "qt";
   fs.mkdirSync("_posts/" + category, { recursive: true });
 
-  let items = callApi(PLAYLIST_ID_SERMON, function(items) {
-    if (items) {
-      for (const item of items) {
-        let snippet = item?.["snippet"];
-        if (snippet) {
-          
-          let date = "";
-          let title = "";
-          let subtitle = "";
-          let description = "";
-          let desc = snippet?.["description"];
-          let publishedAt = snippet?.["publishedAt"];
-          let youtube = snippet?.["resourceId"]?.["videoId"];
+  for (const playlistId of QT_PLAYLISTS) {
+    console.log(`Fetching QT playlist: ${playlistId}`);
+    const items = await fetchAllItems(playlistId);
+    console.log(`  ${items.length} items found`);
 
-          if (publishedAt) {
-            date = convertPostDate(publishedAt, true);
-          } else {
-            throw new Error("An error occured parsing sermon date; " + publishedAt);
-          }
+    for (const item of items) {
+      const snippet = item?.["snippet"];
+      if (!snippet) continue;
 
-          let array = desc.split("\n\n");
-          if (array.length >= 3) {
-            title = array[1];
-            subtitle = array[0];
-            
-            for (let i=2; i<array.length; i++) {
-              let string = array[i];
-              description += (string.replaceAll("\n", "\n\n") + "\n\n");
-            }
-          } else {
-            // throw new Error("An error occured parsing youtube sermon description; " + description);
-            let mediaTitle = snippet?.["title"];
-            const m = mediaTitle.match(/\(([^)]+)\)/);
-            if (!m) throw new Error("An error occured parsing youtube sermon title; " + snippet);
-          
-            const inside = m[1].trim();
-          
-            // 마지막 쉼표(,) 기준으로 title/subtitle 분리 (subtitle에 쉼표가 더 있을 수도 있으니 lastIndexOf 사용)
-            const idx = inside.lastIndexOf(",");
-            title = inside.slice(0, idx).trim();
-            subtitle = inside.slice(idx + 1).trim();
-          
-            if (!title || !subtitle) throw new Error("An error occured parsing youtube sermon title and subtitle; " + mediaTitle + "\n" + description);
-          }
+      const mediaTitle = snippet?.["title"] || "";
+      if (mediaTitle === "Private video") continue;
 
-          createFile(date, title, subtitle, category, youtube, description);
-        }
+      const publishedAt = snippet?.["publishedAt"];
+      const youtube = snippet?.["resourceId"]?.["videoId"];
+
+      // 날짜: publishedAt 우선, 없으면 제목에서 파싱
+      let date = "";
+      if (publishedAt) {
+        date = convertPostDate(publishedAt, false);
+      } else {
+        date = parseDateFromTitle(mediaTitle);
+        if (!date) throw new Error("Failed to parse QT date: " + mediaTitle);
       }
+
+      // 제목: 괄호 안에서 추출 (기존 로직 유지)
+      let title = "";
+      const parts = mediaTitle.split("(");
+      if (parts.length == 2) {
+        title = parts[1].split(")")[0];
+      } else if (parts.length >= 3) {
+        title = parts[parts.length - 1].split(")")[0];
+      } else {
+        throw new Error("Failed to parse QT title: " + mediaTitle);
+      }
+
+      createFile(date, title, "", category, youtube, "");
     }
-  });
+  }
 }
 
-function getQts() {
-  // 주일설교
-  let category = "qt"
-  fs.mkdirSync("_posts/" + category, { recursive: true });
-
-  let items = callApi(PLAYLIST_ID_QT, function(items) {
-    if (items) {
-      for (const item of items) {
-        let snippet = item?.["snippet"];
-        if (snippet) {
-
-          var date = "";
-          let title = snippet?.["title"];
-          if (title == "Private video") {
-            continue;
-          }
-          let publishedAt = snippet?.["publishedAt"];
-          let youtube = snippet?.["resourceId"]?.["videoId"];
-
-          // 정규식을 이용해 월과 일을 추출
-          const match = title.match(/(\d{1,2})월\s+(\d{1,2})일/);
-          if (match) {
-            const year = new Date().getFullYear();
-            const month = match[1].padStart(2, '0'); // 한 자리 수일 경우 0 추가
-            const day = match[2].padStart(2, '0');
-            const formattedDate = `${year}-${month}-${day}`;
-            date = formattedDate;
-          } else {
-            // 패턴에 맞지 않으면 skip (에러 없음)
-            throw new Error("An error occured parsing youtube qt title 1; " + title);
-          }
-          
-          let array = title.split("(");
-          if (array.length == 2) {
-            array = array[1].split(")");
-          } else if (array.length == 3) {
-            array = array[2].split(")");
-          } else {
-            throw new Error("An error occured parsing youtube qt title 1; " + title);
-          }
-          if (array.length >= 1) {
-            title = array[0];
-          } else {
-            throw new Error("An error occured parsing youtube qt title 2; " + title);
-          }
-
-          createFile(date, title, "", category, youtube, "");
-        }
-      }
-    }
-  });
-}
-
-checkSermons();
-getSermons();
-getQts();
+(async () => {
+  await getSermons();
+  await getQts();
+})();
