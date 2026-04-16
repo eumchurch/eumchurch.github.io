@@ -514,6 +514,11 @@ body {
   text-align: center;
 }
 
+.flex-sm-container {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 767px) {
   .text-size-header { font-size: 50px; }
   .front-content-top {
@@ -573,10 +578,6 @@ body {
   .nav-menu-button {
     margin-top: 5px;
     margin-right: 10px;
-  }
-  .flex-sm-container {
-    display: flex;
-    flex-direction: column;
   }
   .flex-md-container {
     display: flex;
@@ -726,10 +727,6 @@ body {
   }
   .category-box {
     diaplay: inline-block;
-  }
-  .flex-sm-container {
-    display: flex;
-    flex-direction: row;
   }
   .flex-md-container {
     display: flex;
