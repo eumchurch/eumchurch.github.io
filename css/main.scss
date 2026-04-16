@@ -514,11 +514,6 @@ body {
   text-align: center;
 }
 
-.flex-sm-container {
-  display: flex;
-  flex-direction: column;
-}
-
 @media (max-width: 767px) {
   .text-size-header { font-size: 50px; }
   .front-content-top {
@@ -670,6 +665,14 @@ body {
       }
     }
   }
+  .flex-sm-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-mini-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media (min-width: 768px) {
@@ -764,6 +767,14 @@ body {
     width: 0;
     height: 160px;
     border-left: 1px solid #cdcdcd;
+  }
+  .flex-sm-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .flex-mini-container {
+    display: flex;
+    flex-direction: column;
   }
 }
 
