@@ -296,9 +296,6 @@ body {
       .bold {
         font-weight: 600;
       }
-      .light {
-        font-weight: 100;
-      }
     }
   }
 }
@@ -592,6 +589,9 @@ body {
     .title {
       right: 50%;
       font-size: 20px;
+      .light {
+        font-weight: 200;
+      }
     }
   }
   .footer-flex-padding {
@@ -752,6 +752,9 @@ body {
     .title {
       right: 58%;
       font-size: 22px;
+      .light {
+        font-weight: 100;
+      }
     }
   }
   .footer-flex-padding {
