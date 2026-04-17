@@ -776,6 +776,7 @@ body {
   .flex-mini-container {
     display: flex;
     flex-direction: column;
+    width: 500px;
   }
 }
 
@@ -829,6 +830,11 @@ body {
     width: 0;
     height: 160px;
     border-left: 1px solid #cdcdcd;
+  }
+  .flex-mini-container {
+    display: flex;
+    flex-direction: column;
+    width: 710px;
   }
 }
 
