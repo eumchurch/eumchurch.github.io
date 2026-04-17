@@ -673,7 +673,7 @@ body {
   .flex-mini-container {
     display: flex;
     flex-direction: column;
-    text-align: right;
+    justify-content: flex-end;
   }
 }
 
@@ -778,7 +778,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     width: 500px;
-    text-align: right;
+    justify-content: flex-end;
   }
 }
 
@@ -837,7 +837,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     width: 710px;
-    text-align: right;
+    justify-content: flex-end;
   }
 }
 
