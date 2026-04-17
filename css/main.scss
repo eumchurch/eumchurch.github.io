@@ -775,7 +775,7 @@ body {
   }
   .flex-mini-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 500px;
   }
 }
@@ -833,7 +833,7 @@ body {
   }
   .flex-mini-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 710px;
   }
 }
