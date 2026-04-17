@@ -245,7 +245,6 @@ body {
 }
 .light-content {
   margin-top: 2px;
-  font-weight: 200;
   position: absolute;
   right: 15px;
 }
@@ -674,6 +673,9 @@ body {
     flex-direction: column;
     justify-content: flex-end;
   }
+  .light-content {
+    font-weight: 300;
+  }
 }
 
 @media (min-width: 768px) {
@@ -782,6 +784,9 @@ body {
     flex-wrap: wrap;
     width: 500px;
     justify-content: flex-end;
+  }
+  .light-content {
+    font-weight: 200;
   }
 }
 
