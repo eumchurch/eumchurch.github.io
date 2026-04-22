@@ -225,9 +225,9 @@ body {
   padding-left: 0;
   padding-right: 0;
   margin: 2px 10px 2px 10px;
-  width: 230px;
+  width: 235px;
   height: 30px;
-  border: 2px solid $theme-darkgray; /* 테두리 스타일과 두께 지정 */
+  border: 1px solid $theme-darkgray; /* 테두리 스타일과 두께 지정 */
   border-radius: 15px;
   display: flex;
   position: relative;
@@ -245,7 +245,6 @@ body {
 }
 .light-content {
   margin-top: 2px;
-  font-weight: 200;
   position: absolute;
   right: 15px;
 }
@@ -290,15 +289,11 @@ body {
     .title {
       position: absolute;
       bottom: 0;
-      right: 58%;
       text-align: right;
       font-family: "SCoreDream";
       line-height: 1.15;
       .bold {
         font-weight: 600;
-      }
-      .light {
-        font-weight: 100;
       }
     }
   }
@@ -593,6 +588,9 @@ body {
     .title {
       right: 50%;
       font-size: 20px;
+      .light {
+        font-weight: 300;
+      }
     }
   }
   .footer-flex-padding {
@@ -675,6 +673,9 @@ body {
     flex-direction: column;
     justify-content: flex-end;
   }
+  .light-content {
+    font-weight: 300;
+  }
 }
 
 @media (min-width: 768px) {
@@ -751,7 +752,11 @@ body {
     width: 240px;
     height: 240px;
     .title {
-      font-size: 24px;
+      right: 58%;
+      font-size: 22px;
+      .light {
+        font-weight: 100;
+      }
     }
   }
   .footer-flex-padding {
@@ -779,6 +784,9 @@ body {
     flex-wrap: wrap;
     width: 500px;
     justify-content: flex-end;
+  }
+  .light-content {
+    font-weight: 200;
   }
 }
 
@@ -836,7 +844,7 @@ body {
   .flex-mini-container {
     display: flex;
     flex-wrap: wrap;
-    width: 710px;
+    width: 720px;
     justify-content: flex-end;
   }
 }
